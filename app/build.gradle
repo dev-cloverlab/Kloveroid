@@ -61,8 +61,8 @@ dependencies {
         exclude group: "com.jakewharton.timber", module: "timber"
     })
     // Rxlifecycle
-    implementation "com.trello:rxlifecycle-kotlin:${rx_lifecycle_version}"
-    implementation "com.trello:rxlifecycle-components:${rx_lifecycle_version}"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-kotlin:${rx_lifecycle_version}"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-components:${rx_lifecycle_version}"
     /* For architecture */
     // Dagger 2
     kapt "com.google.dagger:dagger-compiler:${dagger_2_version}"
@@ -73,7 +73,7 @@ dependencies {
     // Retrofit 2
     implementation "com.squareup.retrofit2:retrofit:${retrofit_2_version}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit_2_version}"
-    implementation "com.squareup.retrofit2:adapter-rxjava:${retrofit_2_version}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit_2_version}"
     // Glide
     implementation "com.github.bumptech.glide:glide:${gilde_version}"
     /* For json format */
