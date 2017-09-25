@@ -14,7 +14,6 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 class AccountDataRepository @Inject
 internal constructor(private val dataStoreFactory: DataStoreFactory): IAccountRepository {
     @Inject private lateinit var fakeMapper: FakeEntityMapper

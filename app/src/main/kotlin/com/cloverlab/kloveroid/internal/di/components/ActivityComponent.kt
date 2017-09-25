@@ -8,7 +8,6 @@ import dagger.Component
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @PerActivity
 @Component(dependencies = arrayOf(AppComponent::class), modules = arrayOf(ActivityModule::class))
 interface ActivityComponent

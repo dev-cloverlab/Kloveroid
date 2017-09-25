@@ -10,7 +10,6 @@ import com.cloverlab.kloveroid.internal.di.components.AppComponent
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 class App: Application() {
     companion object {
         @JvmStatic

@@ -20,7 +20,6 @@ import javax.inject.Singleton
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @Module
 class AppModule(private val app: Application) {
     @Provides

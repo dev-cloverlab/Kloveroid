@@ -17,7 +17,6 @@ import javax.inject.Singleton
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @Singleton
 @Component(modules = arrayOf(AppModule::class, NetModule::class))
 interface AppComponent {

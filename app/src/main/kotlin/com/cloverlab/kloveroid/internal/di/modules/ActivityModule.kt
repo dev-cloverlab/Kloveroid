@@ -14,7 +14,6 @@ import dagger.Provides
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @Module
 class ActivityModule(var activity: Activity) {
     @Provides

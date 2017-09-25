@@ -8,7 +8,6 @@ import android.content.Context
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 interface IView {
     /**
      * Show a view with a progress bar indicating a loading process.

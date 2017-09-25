@@ -12,7 +12,6 @@ import com.cloverlab.kloveroid.ui.fragments.MainFragment
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 class MainActivity: BaseActivity(), HasComponent<UseCaseComponent> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

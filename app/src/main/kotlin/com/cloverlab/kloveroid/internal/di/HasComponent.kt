@@ -6,7 +6,6 @@ package com.cloverlab.kloveroid.internal.di
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 interface HasComponent<out C> {
     fun getComponent(obj: Any?): C
 }

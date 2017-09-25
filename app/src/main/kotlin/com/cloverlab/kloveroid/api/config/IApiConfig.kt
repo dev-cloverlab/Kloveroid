@@ -6,7 +6,6 @@ package com.cloverlab.kloveroid.api.config
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 interface IApiConfig {
     /**
      * Obtain the base http url.

@@ -13,7 +13,6 @@ import javax.inject.Singleton
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @Singleton
 class FakeEntityMapper @Inject internal constructor(): IEntityMapper<FakeModel, FakeEntity> {
     override fun transformFrom(model: FakeModel): FakeEntity {

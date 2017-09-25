@@ -8,6 +8,5 @@ import dagger.Module
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @Module
 class UseCaseModule(var id: String = "-1")

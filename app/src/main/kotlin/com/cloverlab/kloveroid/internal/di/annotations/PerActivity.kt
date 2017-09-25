@@ -9,7 +9,6 @@ import javax.inject.Scope
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @Scope
 @Retention
 annotation class PerActivity

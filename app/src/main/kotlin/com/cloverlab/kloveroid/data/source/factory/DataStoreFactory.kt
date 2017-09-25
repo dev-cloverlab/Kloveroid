@@ -13,7 +13,6 @@ import javax.inject.Singleton
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @Singleton
 class DataStoreFactory @Inject internal constructor(private val context: Context) {
     fun createLocal(): IDataStore {

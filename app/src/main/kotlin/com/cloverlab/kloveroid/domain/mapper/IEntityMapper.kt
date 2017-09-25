@@ -6,7 +6,6 @@ package com.cloverlab.kloveroid.domain.mapper
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 interface IEntityMapper<M, E> {
     /**
      * Interaction of transforming from kotlin layer [M] model data to data layer [E] entity data.

@@ -23,7 +23,6 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @PerActivity
 class MainFragment: BaseFragment(), MainContract.View {
     companion object Factory {

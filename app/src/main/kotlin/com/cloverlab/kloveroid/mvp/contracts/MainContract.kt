@@ -10,7 +10,6 @@ import com.cloverlab.kloveroid.mvp.views.IView
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 interface MainContract {
     interface Presenter: IPresenter<View>
 

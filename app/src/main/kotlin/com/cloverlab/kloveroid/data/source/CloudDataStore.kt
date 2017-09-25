@@ -13,7 +13,6 @@ import javax.inject.Named
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 class CloudDataStore @Inject constructor(): IDataStore {
     @Inject
     @Named("FakeHttp") internal var retrofit: Retrofit? = null

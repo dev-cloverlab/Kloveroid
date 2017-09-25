@@ -13,7 +13,6 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 @PerActivity
 class MainPresenter @Inject constructor(val fakeCase: CreateFakeUseCase): MainContract.Presenter {
     private lateinit var view: MainContract.View

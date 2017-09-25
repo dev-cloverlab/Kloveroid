@@ -8,7 +8,6 @@ import android.util.Log
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 object AppLog {
     private const val COLON: String = ":"
     private const val LEFT_PARENTHESIS: String = "("

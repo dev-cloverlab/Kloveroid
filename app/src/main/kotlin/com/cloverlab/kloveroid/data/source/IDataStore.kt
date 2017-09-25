@@ -10,7 +10,6 @@ import rx.Observable
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 interface IDataStore {
     /**
      * Get an [rx.Observable] which will emit a List of [FakeEntity].

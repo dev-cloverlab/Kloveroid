@@ -16,7 +16,6 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 class CreateFakeUseCase @Inject
 internal constructor(threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread,
                      private val accountRepository: IAccountRepository): BaseUseCase<CreateFakeUseCase.Requests>(

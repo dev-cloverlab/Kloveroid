@@ -9,7 +9,6 @@ import rx.Observable
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 interface IFragmentView {
     /**
      * Get a fragment life cycle.

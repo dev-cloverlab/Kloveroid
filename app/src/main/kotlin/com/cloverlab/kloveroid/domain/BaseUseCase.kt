@@ -31,7 +31,6 @@ import java.util.concurrent.ThreadPoolExecutor
  * @author Jieyi Wu
  * @since 09/25/17
  */
-
 abstract class BaseUseCase<R: BaseUseCase.RequestValues> internal constructor(private val threadExecutor: ThreadExecutor,
                                                                               private val postExecutionThread: PostExecutionThread) {
     internal var requestValues: R? = null
