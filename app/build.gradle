@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
@@ -9,13 +10,18 @@ android {
         applicationId "com.cloverlab.kloveriod"
         minSdkVersion 19
         targetSdkVersion 26
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+        main {
+            java.srcDirs += 'src/main/kotlin'
+            assets.srcDirs += 'assets'
+        }
     }
+    packagingOptions { exclude 'META-INF/rxjava.properties' }
     buildTypes {
         release {
             minifyEnabled true
@@ -27,49 +33,55 @@ android {
     }
 }
 
-kapt {
-    generateStubs = true
-}
+androidExtensions { experimental = true }
+kapt { generateStubs = true }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
     /* For language */
-    //kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
+    // Kotlin Anko
+    implementation "org.jetbrains.anko:anko-commons:${anko_version}"
+    implementation "org.jetbrains.anko:anko-sdk25:${anko_version}"
+    // sdk15, sdk19, sdk21, sdk23 are also available
+    implementation "org.jetbrains.anko:anko-sdk25-coroutines:${anko_version}"
     /* For reaction programming */
     // Rx kotlin
-    compile "io.reactivex:rxkotlin:${rx_kotlin_version}"
+    implementation "io.reactivex.rxjava2:rxjava:${rx_java_version}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rx_kotlin_version}"
     // Rx kotlin binding
-    compile "com.jakewharton.rxbinding:rxbinding-kotlin:${rx_binding_kotlin_version}"
-    compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:${rx_binding_kotlin_version}"
-    compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:${rx_binding_kotlin_version}"
-    compile "com.jakewharton.rxbinding:rxbinding-design-kotlin:${rx_binding_kotlin_version}"
-    compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:${rx_binding_kotlin_version}"
-    compile "com.jakewharton.rxbinding:rxbinding-leanback-v17-kotlin:${rx_binding_kotlin_version}"
-    // Rx Bus
-    compile "com.hwangjr.rxbus:rxbus:${rx_bus_version}"
-    // Rx lifecycle
-    compile "com.trello:rxlifecycle-kotlin:${rx_lifecycle_version}"
-    compile "com.trello:rxlifecycle-components:${rx_lifecycle_version}"
+    implementation "com.jakewharton.rxbinding:rxbinding-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding:rxbinding-design-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding:rxbinding-leanback-v17-kotlin:${rx_binding_kotlin_version}"
+    // RxBus
+    implementation("com.hwangjr.rxbus:rxbus:${rx_bus_version}", {
+        exclude group: "com.jakewharton.timber", module: "timber"
+    })
+    // Rxlifecycle
+    implementation "com.trello:rxlifecycle-kotlin:${rx_lifecycle_version}"
+    implementation "com.trello:rxlifecycle-components:${rx_lifecycle_version}"
     /* For architecture */
     // Dagger 2
     kapt "com.google.dagger:dagger-compiler:${dagger_2_version}"
-    compile "com.google.dagger:dagger:${dagger_2_version}"
-    annotationProcessor "com.google.dagger:dagger-compiler:${dagger_2_version}"
+    kapt "com.google.dagger:dagger-android-processor:${dagger_2_version}"
+    implementation "com.google.dagger:dagger:${dagger_2_version}"
+    implementation "com.google.dagger:dagger-android-support:${dagger_2_version}"
     /* For internet */
     // Retrofit 2
-    compile "com.squareup.retrofit2:retrofit:${retrofit_2_version}"
-    compile "com.squareup.retrofit2:converter-gson:${retrofit_2_version}"
-    compile "com.squareup.retrofit2:adapter-rxjava:${retrofit_2_version}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofit_2_version}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit_2_version}"
+    implementation "com.squareup.retrofit2:adapter-rxjava:${retrofit_2_version}"
     // Glide
-    compile "com.github.bumptech.glide:glide:${gilde_version}"
+    implementation "com.github.bumptech.glide:glide:${gilde_version}"
     /* For json format */
     // Gson
-    compile "com.google.code.gson:gson:${gson_version}"
-    
-    compile 'com.android.support:appcompat-v7:26.0.2'
-    compile 'com.android.support:support-v4:26.0.2'
+    implementation "com.google.code.gson:gson:${gson_version}"
+
+    implementation "com.android.support:appcompat-v7:26.0.2"
+    implementation "com.android.support:support-v4:26.0.2"
 }
 
 repositories {
@@ -77,5 +89,11 @@ repositories {
     maven {
         url 'https://maven.google.com/'
         name 'Google'
+    }
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
     }
 }
