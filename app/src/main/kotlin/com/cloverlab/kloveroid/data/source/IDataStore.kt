@@ -1,6 +1,5 @@
 package com.cloverlab.kloveroid.data.source
 
-import com.cloverlab.kloveroid.data.entities.FakeEntity
 import com.cloverlab.kloveroid.mvp.models.FakeModel
 import rx.Observable
 
@@ -14,5 +13,5 @@ interface IDataStore {
     /**
      * Get an [rx.Observable] which will emit a List of [FakeEntity].
      */
-    fun createEntity(model: FakeModel): Observable<FakeEntity>
+    fun createEntity(model: FakeModel): Observable<FakeModel>
 }

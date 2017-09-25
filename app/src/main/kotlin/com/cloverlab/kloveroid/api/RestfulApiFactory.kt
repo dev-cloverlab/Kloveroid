@@ -2,8 +2,8 @@ package com.cloverlab.kloveroid.api
 
 import com.cloverlab.kloveroid.api.config.FakeConfig
 import com.cloverlab.kloveroid.api.config.IApiConfig
+import com.cloverlab.kloveroid.internal.di.annotations.scopes.Network
 import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * Factory that creates different implementations of [IApiConfig].
@@ -11,8 +11,8 @@ import javax.inject.Singleton
  * @author Jieyi Wu
  * @since 09/25/17
  */
-@Singleton
-class RestfulApiFactory @Inject internal constructor() {
+@Network
+class RestfulApiFactory @Inject constructor() {
     fun createFakeConfig(): IApiConfig {
         return FakeConfig()
     }

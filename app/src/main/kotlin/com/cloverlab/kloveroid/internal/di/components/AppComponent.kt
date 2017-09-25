@@ -2,9 +2,6 @@ package com.cloverlab.kloveroid.internal.di.components
 
 import android.content.Context
 import com.cloverlab.kloveroid.App
-import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
-import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
-import com.cloverlab.kloveroid.domain.repository.IAccountRepository
 import com.cloverlab.kloveroid.internal.di.modules.AppModule
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -28,7 +25,7 @@ interface AppComponent: AndroidInjector<App> {
     /** Providing to dependence components. */
     fun context(): Context
 
-    fun threadExecutor(): ThreadExecutor
-    fun postExecutionThread(): PostExecutionThread
-    fun accountRepository(): IAccountRepository
+//    fun threadExecutor(): ThreadExecutor
+//    fun postExecutionThread(): PostExecutionThread
+//    fun accountRepository(): IAccountRepository
 }

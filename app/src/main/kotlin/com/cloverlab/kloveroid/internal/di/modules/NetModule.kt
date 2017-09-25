@@ -15,7 +15,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
-import javax.inject.Singleton
 
 /**
  *
@@ -60,7 +59,7 @@ class NetModule {
         }
 
     @Provides
-    @Singleton
+    @Network
     @Named("FakeHttp")
     fun provideRetrofit2(baseBuilder: Retrofit.Builder, restfulApiFactory: RestfulApiFactory): Retrofit =
         with(baseBuilder) {

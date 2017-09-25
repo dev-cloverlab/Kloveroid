@@ -1,6 +1,5 @@
 package com.cloverlab.kloveroid.data.source
 
-import com.cloverlab.kloveroid.data.entities.FakeEntity
 import com.cloverlab.kloveroid.mvp.models.FakeModel
 import rx.Observable
 
@@ -9,7 +8,7 @@ import rx.Observable
  * @since 09/25/17
  */
 class LocalDataStore: IDataStore {
-    override fun createEntity(model: FakeModel): Observable<FakeEntity> {
+    override fun createEntity(model: FakeModel): Observable<FakeModel> {
         TODO("not yet")
     }
 }

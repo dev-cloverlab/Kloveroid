@@ -4,14 +4,13 @@ import com.cloverlab.kloveroid.domain.CreateFakeUseCase
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
 import com.cloverlab.kloveroid.mvp.models.FakeModel
 import dagger.internal.Preconditions
-import javax.inject.Inject
 
 /**
  *
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class MainPresenter @Inject constructor(val fakeCase: CreateFakeUseCase): MainContract.Presenter {
+class MainPresenter(val fakeCase: CreateFakeUseCase): MainContract.Presenter {
     private lateinit var view: MainContract.View
 
     //region Subscribers

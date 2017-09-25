@@ -1,13 +1,12 @@
 package com.cloverlab.kloveroid.domain
 
+import com.cloverlab.kloveroid.data.source.IDataStore
 import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
 import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
-import com.cloverlab.kloveroid.domain.repository.IAccountRepository
 import com.cloverlab.kloveroid.mvp.models.FakeModel
 import rx.Observable
 import rx.Subscriber
 import rx.Subscription
-import javax.inject.Inject
 
 
 /**
@@ -16,11 +15,10 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class CreateFakeUseCase @Inject constructor(threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread,
-                                            private val accountRepository: IAccountRepository): BaseUseCase<CreateFakeUseCase.Requests>(
-    threadExecutor,
-    postExecutionThread) {
-
+class CreateFakeUseCase constructor(threadExecutor: ThreadExecutor,
+                                    postExecutionThread: PostExecutionThread,
+                                    private val repository: IDataStore):
+    BaseUseCase<CreateFakeUseCase.Requests>(threadExecutor, postExecutionThread) {
     /**
      * Executes the current use case with request parameters.
      *
@@ -28,7 +26,7 @@ class CreateFakeUseCase @Inject constructor(threadExecutor: ThreadExecutor, post
      * @param useCaseSubscriber The guy who will be listen to the observable build with
      */
     override fun execute(request: Requests, useCaseSubscriber: Subscriber<*>) {
-        setRequestValues(request)
+        requestValues = request
 
         super.execute(request, useCaseSubscriber)
     }
@@ -39,11 +37,11 @@ class CreateFakeUseCase @Inject constructor(threadExecutor: ThreadExecutor, post
      * @return [Observable] for connecting with a [Subscription] from the kotlin layer.
      */
     override fun buildUseCaseObservable(): Observable<*> {
-        return accountRepository.CreateFakes(getRequestValues().fakeModel)
+        return repository.createEntity(requestValues.fakeModel)
     }
 
     /**
      * Wrapping data requests for general situation.
      */
-    class Requests(private val fakeModel: FakeModel): BaseUseCase.RequestValues()
+    class Requests(val fakeModel: FakeModel): BaseUseCase.RequestValues()
 }

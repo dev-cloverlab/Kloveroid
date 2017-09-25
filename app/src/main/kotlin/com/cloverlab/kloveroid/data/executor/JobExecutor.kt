@@ -14,7 +14,7 @@ import javax.inject.Singleton
  * Decorated [ThreadPoolExecutor]
  */
 @Singleton
-class JobExecutor @Inject internal constructor(): ThreadExecutor {
+class JobExecutor @Inject constructor(): ThreadExecutor {
     private val workQueue: BlockingQueue<Runnable>
     private val threadPoolExecutor: ThreadPoolExecutor
     private val threadFactory: ThreadFactory

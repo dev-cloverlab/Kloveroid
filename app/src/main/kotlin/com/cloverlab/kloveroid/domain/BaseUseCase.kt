@@ -4,6 +4,8 @@ import com.cloverlab.kloveroid.domain.BaseUseCase.RequestValues
 import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
 import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
 import com.cloverlab.kloveroid.utilies.AppLog
+import com.trello.rxlifecycle2.android.ActivityEvent
+import com.trello.rxlifecycle2.android.FragmentEvent
 import dagger.internal.Preconditions
 import rx.Observable
 import rx.Scheduler
@@ -28,25 +30,23 @@ import java.util.concurrent.ThreadPoolExecutor
  * @author Jieyi Wu
  * @since 09/25/17
  */
-abstract class BaseUseCase<R: BaseUseCase.RequestValues> internal constructor(private val threadExecutor: ThreadExecutor,
-                                                                              private val postExecutionThread: PostExecutionThread) {
-    internal var requestValues: R? = null
+abstract class BaseUseCase<R: BaseUseCase.RequestValues>(private val threadExecutor: ThreadExecutor,
+                                                         private val postExecutionThread: PostExecutionThread) {
+    lateinit var requestValues: R
 
     /**
      * Obtain a thread for while [Observable] is doing their tasks.
      *
      * @return [Scheduler] implement from [PostExecutionThread].
      */
-    protected val observeScheduler: Scheduler
-        get() = postExecutionThread.scheduler
+    protected val observeScheduler: Scheduler = postExecutionThread.scheduler
 
     /**
      * Obtain a thread from [ThreadPoolExecutor] for while [Scheduler] is doing their tasks.
      *
      * @return [Scheduler] implement from [ThreadExecutor].
      */
-    protected val subscribeScheduler: Scheduler
-        get() = Schedulers.from(threadExecutor)
+    protected val subscribeScheduler: Scheduler = Schedulers.from(threadExecutor)
 
     /**
      * Builds an [Observable] which will be used when executing the current [BaseUseCase].
@@ -69,17 +69,18 @@ abstract class BaseUseCase<R: BaseUseCase.RequestValues> internal constructor(pr
         var observable: Observable<*> = buildUseCaseObservable()
             .doOnUnsubscribe { AppLog.d("Unsubscribing subscription") }
 
+        // TODO(jieyi): 9/25/17 Here is not finished.
         // Assign the one of them to RxJava request.
-        if (null != request.fragmentLifecycle) {
-            observable = observable.compose(RxLifecycleAndroid.bindFragment(request.fragmentLifecycle!!))
-        }
-        else if (null != request.activityLifecycle) {
-            observable = observable.compose(RxLifecycleAndroid.bindActivity(request.activityLifecycle!!))
-        }
+//        if (null != request.fragmentLifecycle) {
+//            observable = observable.compose(RxLifecycleAndroid.bindFragment(request.fragmentLifecycle!!))
+//        }
+//        else if (null != request.activityLifecycle) {
+//            observable = observable.compose(RxLifecycleAndroid.bindActivity(request.activityLifecycle!!))
+//        }
 
         observable.subscribeOn(subscribeScheduler)
             .observeOn(observeScheduler)
-            .subscribe(useCaseSubscriber)
+//            .subscribe(useCaseSubscriber)
     }
 
     /**

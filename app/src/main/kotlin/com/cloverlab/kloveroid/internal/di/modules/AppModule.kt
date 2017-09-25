@@ -4,10 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.cloverlab.kloveroid.App
 import com.cloverlab.kloveroid.data.executor.JobExecutor
-import com.cloverlab.kloveroid.data.repositiry.AccountDataRepository
 import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
 import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
-import com.cloverlab.kloveroid.domain.repository.IAccountRepository
 import com.cloverlab.kloveroid.utilies.UIThread
 import dagger.Module
 import dagger.Provides
@@ -28,11 +26,6 @@ class AppModule {
     @Provides
     @Singleton
     fun provideAppContext(app: App): Context = app.applicationContext
-
-    @Provides
-    @Singleton
-    fun provideAccountRepository(accountDataRepository: AccountDataRepository): IAccountRepository =
-        accountDataRepository
 
     @Provides
     @Singleton
