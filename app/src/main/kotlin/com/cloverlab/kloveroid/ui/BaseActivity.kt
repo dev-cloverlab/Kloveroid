@@ -2,16 +2,19 @@ package com.cloverlab.kloveroid.ui
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.cloverlab.kloveroid.App
-import com.cloverlab.kloveroid.internal.di.components.AppComponent
 import com.cloverlab.kloveroid.internal.di.modules.ActivityModule
 import com.cloverlab.kloveroid.utilies.AppLog
 import com.hwangjr.rxbus.RxBus
 import com.hwangjr.rxbus.annotation.Subscribe
 import com.hwangjr.rxbus.annotation.Tag
 import com.touchin.constant.RxbusTag
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasFragmentInjector
+import dagger.android.support.HasSupportFragmentInjector
 import dagger.internal.Preconditions
 import javax.inject.Inject
 
@@ -21,9 +24,12 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-open class BaseActivity: AppCompatActivity() {
-    @Inject
-    lateinit var navigator: Navigator
+open class BaseActivity: RxAppCompatActivity(), HasFragmentInjector, HasSupportFragmentInjector {
+    /** For providing to support searchFragments. */
+    @Inject lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
+    /** For providing to searchFragments. */
+    @Inject lateinit var fragmentInjector: DispatchingAndroidInjector<android.app.Fragment>
+    @Inject lateinit var navigator: Navigator
 
     // Register it in the parent class that it will be not reflected.
     protected var busEvent = object {
@@ -35,27 +41,42 @@ open class BaseActivity: AppCompatActivity() {
 
     //region Activity lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
-        this.initialInjector()
-
         // Register RxBus.
-        RxBus.get().register(this.busEvent)
+        RxBus.get().register(busEvent)
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
         // Unregister RxBus.
-        RxBus.get().unregister(this.busEvent)
+        RxBus.get().unregister(busEvent)
     }
     //endregion
 
     /**
-     * Get an injector and inject [BaseActivity].
+     * Providing the fragment injector([Fragment]) for the searchFragments.
+     *
+     * @return a [supportFragmentInjector] for children of this fragment.
      */
-    fun initialInjector() {
-        this.getApplicationComponent().inject(BaseActivity@ this)
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = supportFragmentInjector
+
+    /**
+     * Providing the fragment injector([android.app.Fragment]) for the searchFragments.
+     *
+     * @return a [fragmentInjector] for children of this fragment.
+     */
+    override fun fragmentInjector(): AndroidInjector<android.app.Fragment> = fragmentInjector
+
+    /**
+     * Get an Activity module for dependency injection.
+     *
+     * @return [ActivityModule]
+     */
+    protected fun getActivityModule(): ActivityModule {
+        return ActivityModule(this)
     }
 
     /**
@@ -70,7 +91,7 @@ open class BaseActivity: AppCompatActivity() {
         Preconditions.checkNotNull(fragment)
         Preconditions.checkNotNull(needBack)
 
-        val fragmentTransaction = this.supportFragmentManager.beginTransaction()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(containerViewId, fragment, fragment.javaClass.name)
 
         if (null != sharedElement && null != shareElementName) {
@@ -83,40 +104,5 @@ open class BaseActivity: AppCompatActivity() {
         }
 
         fragmentTransaction.commit()
-    }
-
-    /**
-     * Get a fragment from queue by the tag.
-     *
-     * @param tag [Fragment]'s tag.
-     * @return [Fragment]
-     */
-    fun findFragmentByTag(tag: String): Fragment {
-        return this.supportFragmentManager.findFragmentByTag(tag)
-    }
-
-    /**
-     * Pop a [Fragment] from [getSupportFragmentManager].
-     */
-    fun popFragment() {
-        this.supportFragmentManager.popBackStack()
-    }
-
-    /**
-     * Get the Main Application component for dependency injection.
-     *
-     * @return [AppComponent]
-     */
-    protected fun getApplicationComponent(): AppComponent {
-        return App.appComponent(application)
-    }
-
-    /**
-     * Get an Activity module for dependency injection.
-     *
-     * @return [ActivityModule]
-     */
-    protected fun getActivityModule(): ActivityModule {
-        return ActivityModule(this)
     }
 }

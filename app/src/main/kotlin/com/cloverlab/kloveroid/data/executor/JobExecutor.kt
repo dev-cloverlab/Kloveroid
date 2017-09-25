@@ -20,20 +20,20 @@ class JobExecutor @Inject internal constructor(): ThreadExecutor {
     private val threadFactory: ThreadFactory
 
     init {
-        this.workQueue = LinkedBlockingQueue()
-        this.threadFactory = JobThreadFactory()
-        this.threadPoolExecutor = ThreadPoolExecutor(INITIAL_POOL_SIZE,
+        workQueue = LinkedBlockingQueue()
+        threadFactory = JobThreadFactory()
+        threadPoolExecutor = ThreadPoolExecutor(INITIAL_POOL_SIZE,
             MAX_POOL_SIZE,
             KEEP_ALIVE_TIME.toLong(),
             KEEP_ALIVE_TIME_UNIT,
-            this.workQueue,
-            this.threadFactory)
+            workQueue,
+            threadFactory)
     }
 
     override fun execute(runnable: Runnable) {
         Preconditions.checkNotNull(runnable)
 
-        this.threadPoolExecutor.execute(runnable)
+        threadPoolExecutor.execute(runnable)
     }
 
     private class JobThreadFactory: ThreadFactory {

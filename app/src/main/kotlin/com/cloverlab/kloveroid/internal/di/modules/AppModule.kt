@@ -2,8 +2,7 @@ package com.cloverlab.kloveroid.internal.di.modules
 
 import android.app.Application
 import android.content.Context
-import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import com.cloverlab.kloveroid.App
 import com.cloverlab.kloveroid.data.executor.JobExecutor
 import com.cloverlab.kloveroid.data.repositiry.AccountDataRepository
 import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
@@ -21,19 +20,14 @@ import javax.inject.Singleton
  * @since 09/25/17
  */
 @Module
-class AppModule(private val app: Application) {
+class AppModule {
     @Provides
     @Singleton
-    fun provideApplication(): Application = app
+    fun provideApplication(app: App): Application = app
 
     @Provides
     @Singleton
-    fun provideAppContext(): Context = app
-
-    @Provides
-    @Singleton
-    fun provideSharePreferences(application: Application): SharedPreferences =
-        PreferenceManager.getDefaultSharedPreferences(application)
+    fun provideAppContext(app: App): Context = app.applicationContext
 
     @Provides
     @Singleton

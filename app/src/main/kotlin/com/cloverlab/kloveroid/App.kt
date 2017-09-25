@@ -1,8 +1,8 @@
 package com.cloverlab.kloveroid
 
-import android.app.Application
-import android.content.Context
 import com.cloverlab.kloveroid.internal.di.components.AppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
 /**
  * Android Main Application
@@ -10,12 +10,16 @@ import com.cloverlab.kloveroid.internal.di.components.AppComponent
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class App: Application() {
+class App: DaggerApplication() {
     companion object {
-        @JvmStatic
-        fun appComponent(context: Context): AppComponent =
-            (context as App).appComponent
+        lateinit var injector: AndroidInjector<App>
+        val appComponent by lazy { injector as AppComponent }
     }
 
-    private val appComponent: AppComponent by lazy { AppComponent.Initializer.init(this) }
+    init {
+        // Create an application component injector.
+        injector = DaggerAppComponent.builder().create(this)
+    }
+
+    override fun applicationInjector(): AndroidInjector<App> = injector
 }

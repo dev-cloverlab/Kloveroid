@@ -16,9 +16,8 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class CreateFakeUseCase @Inject
-internal constructor(threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread,
-                     private val accountRepository: IAccountRepository): BaseUseCase<CreateFakeUseCase.Requests>(
+class CreateFakeUseCase @Inject constructor(threadExecutor: ThreadExecutor, postExecutionThread: PostExecutionThread,
+                                            private val accountRepository: IAccountRepository): BaseUseCase<CreateFakeUseCase.Requests>(
     threadExecutor,
     postExecutionThread) {
 
@@ -29,7 +28,7 @@ internal constructor(threadExecutor: ThreadExecutor, postExecutionThread: PostEx
      * @param useCaseSubscriber The guy who will be listen to the observable build with
      */
     override fun execute(request: Requests, useCaseSubscriber: Subscriber<*>) {
-        this.setRequestValues(request)
+        setRequestValues(request)
 
         super.execute(request, useCaseSubscriber)
     }
@@ -40,7 +39,7 @@ internal constructor(threadExecutor: ThreadExecutor, postExecutionThread: PostEx
      * @return [Observable] for connecting with a [Subscription] from the kotlin layer.
      */
     override fun buildUseCaseObservable(): Observable<*> {
-        return accountRepository.CreateFakes(this.getRequestValues().fakeModel)
+        return accountRepository.CreateFakes(getRequestValues().fakeModel)
     }
 
     /**

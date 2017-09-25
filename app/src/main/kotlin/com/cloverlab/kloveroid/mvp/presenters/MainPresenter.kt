@@ -1,11 +1,9 @@
 package com.cloverlab.kloveroid.mvp.presenters
 
 import com.cloverlab.kloveroid.domain.CreateFakeUseCase
-import com.cloverlab.kloveroid.internal.di.annotations.PerActivity
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
 import com.cloverlab.kloveroid.mvp.models.FakeModel
 import dagger.internal.Preconditions
-import rx.lang.kotlin.subscriber
 import javax.inject.Inject
 
 /**
@@ -13,12 +11,11 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-@PerActivity
 class MainPresenter @Inject constructor(val fakeCase: CreateFakeUseCase): MainContract.Presenter {
     private lateinit var view: MainContract.View
 
     //region Subscribers
-    private val fakeSubscriber = subscriber<FakeModel>().onCompleted { }.onError { }.onNext { }
+//    private val fakeSubscriber = subscriber<FakeModel>().onCompleted { }.onError { }.onNext { }
     //endregion
 
     //region View implementation
@@ -30,8 +27,7 @@ class MainPresenter @Inject constructor(val fakeCase: CreateFakeUseCase): MainCo
 
     override fun init() {
         val request = CreateFakeUseCase.Requests(FakeModel("Jieyi", 19, "H"))
-        request.fragmentLifecycle = this.view.fragmentLifecycle()
-        this.fakeCase.execute(request, this.fakeSubscriber)
+//        fakeCase.execute(request, fakeSubscriber)
     }
 
     override fun resume() {

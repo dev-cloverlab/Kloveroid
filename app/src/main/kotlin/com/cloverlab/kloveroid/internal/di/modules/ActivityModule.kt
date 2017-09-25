@@ -1,7 +1,7 @@
 package com.cloverlab.kloveroid.internal.di.modules
 
 import android.app.Activity
-import com.cloverlab.kloveroid.internal.di.annotations.PerActivity
+import com.cloverlab.kloveroid.internal.di.annotations.scopes.PerActivity
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
 import com.cloverlab.kloveroid.mvp.presenters.MainPresenter
 import dagger.Module
@@ -18,7 +18,7 @@ import dagger.Provides
 class ActivityModule(var activity: Activity) {
     @Provides
     @PerActivity
-    fun activity(): Activity = this.activity
+    fun activity(): Activity = activity
 
     @Provides
     @PerActivity

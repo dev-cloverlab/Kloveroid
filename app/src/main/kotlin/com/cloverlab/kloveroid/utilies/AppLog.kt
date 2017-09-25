@@ -50,7 +50,7 @@ object AppLog {
             if (IS_DEBUG) {
                 // Avoid the race condition.
                 synchronized(lockLog) {
-                    return this.logMsg(cls, methodName, msg)
+                    return logMsg(cls, methodName, msg)
                 }
             }
             return true

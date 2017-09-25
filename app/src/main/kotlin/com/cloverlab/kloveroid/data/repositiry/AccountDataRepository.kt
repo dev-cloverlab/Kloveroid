@@ -14,8 +14,7 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class AccountDataRepository @Inject
-internal constructor(private val dataStoreFactory: DataStoreFactory): IAccountRepository {
+class AccountDataRepository @Inject constructor(private val dataStoreFactory: DataStoreFactory): IAccountRepository {
     @Inject private lateinit var fakeMapper: FakeEntityMapper
 
     override fun CreateFakes(fakeModel: FakeModel): Observable<FakeModel> {

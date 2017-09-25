@@ -4,9 +4,6 @@ import com.cloverlab.kloveroid.domain.BaseUseCase.RequestValues
 import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
 import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
 import com.cloverlab.kloveroid.utilies.AppLog
-import com.trello.rxlifecycle.android.ActivityEvent
-import com.trello.rxlifecycle.android.FragmentEvent
-import com.trello.rxlifecycle.android.RxLifecycleAndroid
 import dagger.internal.Preconditions
 import rx.Observable
 import rx.Scheduler
@@ -69,7 +66,7 @@ abstract class BaseUseCase<R: BaseUseCase.RequestValues> internal constructor(pr
         Preconditions.checkNotNull(request)
         Preconditions.checkNotNull(useCaseSubscriber)
 
-        var observable: Observable<*> = this.buildUseCaseObservable()
+        var observable: Observable<*> = buildUseCaseObservable()
             .doOnUnsubscribe { AppLog.d("Unsubscribing subscription") }
 
         // Assign the one of them to RxJava request.

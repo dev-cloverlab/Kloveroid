@@ -1,7 +1,6 @@
 package com.cloverlab.kloveroid.mvp.contracts
 
 import com.cloverlab.kloveroid.mvp.presenters.IPresenter
-import com.cloverlab.kloveroid.mvp.views.IFragmentView
 import com.cloverlab.kloveroid.mvp.views.IView
 
 /**
@@ -13,5 +12,5 @@ import com.cloverlab.kloveroid.mvp.views.IView
 interface MainContract {
     interface Presenter: IPresenter<View>
 
-    interface View: IView, IFragmentView
+    interface View: IView
 }
