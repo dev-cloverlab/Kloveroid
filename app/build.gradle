@@ -37,8 +37,6 @@ dependencies {
     /* For language */
     //kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
-    // Kotter knife
-    compile "com.jakewharton:kotterknife:${koterknife_version}"
     /* For reaction programming */
     // Rx kotlin
     compile "io.reactivex:rxkotlin:${rx_kotlin_version}"
