@@ -4,6 +4,7 @@ import android.content.Context
 import com.cloverlab.kloveroid.internal.di.components.NetComponent
 import com.cloverlab.kloveroid.mvp.models.FakeModel
 import dagger.internal.Preconditions
+import io.reactivex.Observable
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -22,9 +23,9 @@ class CloudDataStore constructor(private val context: Context): IDataStore {
     override fun createEntity(model: FakeModel): Observable<FakeModel> {
         Preconditions.checkNotNull(model)
 
-        return Observable.create { subscriber ->
-            subscriber.onNext(FakeModel("Test", 100, "F"))
-            subscriber.onCompleted()
+        return Observable.create { emitter ->
+            emitter.onNext(FakeModel("Test", 100, "F"))
+            emitter.onComplete()
         }
     }
 }

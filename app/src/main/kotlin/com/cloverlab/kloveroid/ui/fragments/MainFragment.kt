@@ -17,7 +17,7 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class MainFragment: BaseFragment<MainContract.View, MainContract.Presenter>(), MainContract.View {
+class MainFragment: BaseFragment<MainContract.Presenter>(), MainContract.View {
     companion object Factory {
         // The key name of the fragment initialization parameters.
         private val ARG_PARAM_: String = "param_"
@@ -52,7 +52,7 @@ class MainFragment: BaseFragment<MainContract.View, MainContract.Presenter>(), M
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        presenter.setView(MainFragment@ this)
+        presenter.view = this
 
         return rootView
     }

@@ -1,7 +1,7 @@
 package com.cloverlab.kloveroid.mvp.views
 
 import com.trello.rxlifecycle2.android.FragmentEvent
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  * This specifies [].

@@ -23,7 +23,9 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-open class BaseActivity: RxAppCompatActivity(), HasFragmentInjector, HasSupportFragmentInjector {
+abstract class BaseActivity: RxAppCompatActivity(),
+    HasFragmentInjector,
+    HasSupportFragmentInjector {
     /** For providing to support searchFragments. */
     @Inject lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
     /** For providing to searchFragments. */
@@ -68,15 +70,6 @@ open class BaseActivity: RxAppCompatActivity(), HasFragmentInjector, HasSupportF
      * @return a [fragmentInjector] for children of this fragment.
      */
     override fun fragmentInjector(): AndroidInjector<android.app.Fragment> = fragmentInjector
-
-//    /**
-//     * Get an Activity module for dependency injection.
-//     *
-//     * @return [FragmentMainModule]
-//     */
-//    protected fun getActivityModule(): FragmentMainModule {
-//        return FragmentMainModule(this)
-//    }
 
     /**
      * Adds a [Fragment] to this activity's layout.

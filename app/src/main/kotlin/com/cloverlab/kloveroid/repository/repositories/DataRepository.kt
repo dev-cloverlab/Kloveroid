@@ -4,6 +4,7 @@ import com.cloverlab.kloveroid.internal.di.annotations.qualifiers.Local
 import com.cloverlab.kloveroid.internal.di.annotations.qualifiers.Remote
 import com.cloverlab.kloveroid.mvp.models.FakeModel
 import com.cloverlab.kloveroid.repository.source.IDataStore
+import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
 

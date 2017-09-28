@@ -4,14 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.CallSuper
 import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.cloverlab.kloveroid.mvp.presenters.IPresenter
-import com.cloverlab.kloveroid.mvp.views.IView
 import com.trello.rxlifecycle2.components.support.RxFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -25,7 +23,7 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-abstract class BaseFragment<in V: IView, P: IPresenter<V>>: RxFragment(), HasSupportFragmentInjector {
+abstract class BaseFragment<P: IPresenter>: RxFragment(), HasSupportFragmentInjector {
     /** From an activity for providing to children searchFragments. */
     @Inject lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
     protected val appContext: Context by lazy { activity.applicationContext }
@@ -50,6 +48,11 @@ abstract class BaseFragment<in V: IView, P: IPresenter<V>>: RxFragment(), HasSup
         super.onAttach(context)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter.create()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Keep the instance data.
@@ -59,30 +62,36 @@ abstract class BaseFragment<in V: IView, P: IPresenter<V>>: RxFragment(), HasSup
         val parent: ViewGroup? = rootView?.parent as ViewGroup?
         parent?.removeView(rootView)
 
-        presenter.init()
-
         return rootView
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        presenter.init()
         init(savedInstanceState)
     }
 
-    @CallSuper
+    override fun onStart() {
+        super.onStart()
+        presenter.start()
+    }
+
     override fun onResume() {
         super.onResume()
         presenter.resume()
     }
 
-    @CallSuper
+    override fun onStop() {
+        super.onStop()
+        presenter.stop()
+    }
+
     override fun onPause() {
         super.onPause()
         presenter.pause()
     }
 
-    @CallSuper
     override fun onDestroy() {
         // After super.onDestroy() is executed, the presenter will be destroy. So the presenter should be
         // executed before super.onDestroy().
