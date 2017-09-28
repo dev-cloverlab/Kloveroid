@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.cloverlab.kloveroid.mvp.presenters.IPresenter
 import com.trello.rxlifecycle2.components.support.RxFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -23,12 +22,11 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-abstract class BaseFragment<P: IPresenter>: RxFragment(), HasSupportFragmentInjector {
+abstract class BaseFragment: RxFragment(), HasSupportFragmentInjector {
     /** From an activity for providing to children searchFragments. */
     @Inject lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
     protected val appContext: Context by lazy { activity.applicationContext }
     protected var rootView: View? = null
-    abstract var presenter: P
 
     //region Fragment lifecycle
     /** Perform injection here before M, L (API 22) and below because this is not yet available at L. */
@@ -48,11 +46,6 @@ abstract class BaseFragment<P: IPresenter>: RxFragment(), HasSupportFragmentInje
         super.onAttach(context)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        presenter.create()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Keep the instance data.
@@ -68,35 +61,7 @@ abstract class BaseFragment<P: IPresenter>: RxFragment(), HasSupportFragmentInje
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.init()
         init(savedInstanceState)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        presenter.start()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        presenter.resume()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        presenter.stop()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        presenter.pause()
-    }
-
-    override fun onDestroy() {
-        // After super.onDestroy() is executed, the presenter will be destroy. So the presenter should be
-        // executed before super.onDestroy().
-        presenter.resume()
-        super.onDestroy()
     }
     //endregion
 

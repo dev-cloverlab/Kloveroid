@@ -1,12 +1,9 @@
 package com.cloverlab.kloveroid.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.cloverlab.kloveroid.R
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
-import com.cloverlab.kloveroid.ui.BaseFragment
+import com.cloverlab.kloveroid.ui.MvpFragment
 import com.hwangjr.rxbus.RxBus
 import dagger.internal.Preconditions
 import kotlinx.android.synthetic.main.fragment_main.btn_test
@@ -17,7 +14,7 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class MainFragment: BaseFragment<MainContract.Presenter>(), MainContract.View {
+class MainFragment: MvpFragment<MainContract.View, MainContract.Presenter>(), MainContract.View {
     companion object Factory {
         // The key name of the fragment initialization parameters.
         private val ARG_PARAM_: String = "param_"
@@ -48,14 +45,6 @@ class MainFragment: BaseFragment<MainContract.Presenter>(), MainContract.View {
         // Get the arguments from the bundle here.
         arg1 = arguments?.getString(MainFragment.ARG_PARAM_)
     }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-
-        presenter.view = this
-
-        return rootView
-    }
     //endregion
 
     //region Base fragment
@@ -65,6 +54,8 @@ class MainFragment: BaseFragment<MainContract.Presenter>(), MainContract.View {
     }
 
     override fun provideInflateView(): Int = R.layout.fragment_main
+
+    override fun provideCurrentFragmentView(): MainContract.View = this
     //endregion
 
     //region Presenter implements
