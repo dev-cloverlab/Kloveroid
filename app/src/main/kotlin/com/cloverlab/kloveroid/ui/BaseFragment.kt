@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.cloverlab.kloveroid.mvp.presenters.IPresenter
+import com.cloverlab.kloveroid.mvp.views.IView
 import com.trello.rxlifecycle2.components.support.RxFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -23,10 +25,12 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-abstract class BaseFragment: RxFragment(), HasSupportFragmentInjector {
+abstract class BaseFragment<in V: IView, P: IPresenter<V>>: RxFragment(), HasSupportFragmentInjector {
     /** From an activity for providing to children searchFragments. */
     @Inject lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
+    protected val appContext: Context by lazy { activity.applicationContext }
     protected var rootView: View? = null
+    abstract var presenter: P
 
     //region Fragment lifecycle
     /** Perform injection here before M, L (API 22) and below because this is not yet available at L. */
@@ -55,6 +59,8 @@ abstract class BaseFragment: RxFragment(), HasSupportFragmentInjector {
         val parent: ViewGroup? = rootView?.parent as ViewGroup?
         parent?.removeView(rootView)
 
+        presenter.init()
+
         return rootView
     }
 
@@ -67,15 +73,20 @@ abstract class BaseFragment: RxFragment(), HasSupportFragmentInjector {
     @CallSuper
     override fun onResume() {
         super.onResume()
+        presenter.resume()
     }
 
     @CallSuper
     override fun onPause() {
         super.onPause()
+        presenter.pause()
     }
 
     @CallSuper
     override fun onDestroy() {
+        // After super.onDestroy() is executed, the presenter will be destroy. So the presenter should be
+        // executed before super.onDestroy().
+        presenter.resume()
         super.onDestroy()
     }
     //endregion

@@ -1,8 +1,8 @@
 package com.cloverlab.kloveroid.internal.di.components
 
-import com.cloverlab.kloveroid.data.source.LocalDataStore
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.LocalData
 import com.cloverlab.kloveroid.internal.di.modules.DatabaseModule
+import com.cloverlab.kloveroid.repository.source.LocalDataStore
 import dagger.Component
 
 /**

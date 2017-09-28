@@ -1,11 +1,10 @@
-package com.cloverlab.kloveroid.data.source
+package com.cloverlab.kloveroid.repository.source
 
 import android.content.Context
 import com.cloverlab.kloveroid.internal.di.components.NetComponent
 import com.cloverlab.kloveroid.mvp.models.FakeModel
 import dagger.internal.Preconditions
 import retrofit2.Retrofit
-import rx.Observable
 import javax.inject.Inject
 import javax.inject.Named
 

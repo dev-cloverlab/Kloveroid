@@ -1,6 +1,6 @@
-package com.cloverlab.kloveroid.domain.executor
+package com.cloverlab.kloveroid.usecases.executor
 
-import com.cloverlab.kloveroid.domain.BaseUseCase
+import com.cloverlab.kloveroid.usecases.BaseUseCase
 import java.util.concurrent.Executor
 
 /**

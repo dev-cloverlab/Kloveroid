@@ -1,11 +1,11 @@
 package com.cloverlab.kloveroid.internal.di.modules
 
 import android.content.Context
-import com.cloverlab.kloveroid.data.source.CloudDataStore
-import com.cloverlab.kloveroid.data.source.IDataStore
-import com.cloverlab.kloveroid.data.source.LocalDataStore
 import com.cloverlab.kloveroid.internal.di.annotations.qualifiers.Local
 import com.cloverlab.kloveroid.internal.di.annotations.qualifiers.Remote
+import com.cloverlab.kloveroid.repository.source.CloudDataStore
+import com.cloverlab.kloveroid.repository.source.IDataStore
+import com.cloverlab.kloveroid.repository.source.LocalDataStore
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

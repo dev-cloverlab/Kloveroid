@@ -1,10 +1,9 @@
-package com.cloverlab.kloveroid.data.repositories
+package com.cloverlab.kloveroid.repository.repositories
 
-import com.cloverlab.kloveroid.data.source.IDataStore
 import com.cloverlab.kloveroid.internal.di.annotations.qualifiers.Local
 import com.cloverlab.kloveroid.internal.di.annotations.qualifiers.Remote
 import com.cloverlab.kloveroid.mvp.models.FakeModel
-import rx.Observable
+import com.cloverlab.kloveroid.repository.source.IDataStore
 import javax.inject.Inject
 import javax.inject.Singleton
 

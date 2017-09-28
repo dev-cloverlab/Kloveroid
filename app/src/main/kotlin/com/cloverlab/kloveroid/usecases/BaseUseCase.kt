@@ -1,17 +1,14 @@
-package com.cloverlab.kloveroid.domain
+package com.cloverlab.kloveroid.usecases
 
-import com.cloverlab.kloveroid.domain.BaseUseCase.RequestValues
-import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
-import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
-import com.cloverlab.kloveroid.utilies.AppLog
+import com.cloverlab.kloveroid.usecases.BaseUseCase.RequestValues
+import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
+import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor
 import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.android.FragmentEvent
 import dagger.internal.Preconditions
-import rx.Observable
-import rx.Scheduler
-import rx.Subscriber
-import rx.Subscription
-import rx.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.ThreadPoolExecutor
 
 /**
@@ -30,8 +27,8 @@ import java.util.concurrent.ThreadPoolExecutor
  * @author Jieyi Wu
  * @since 09/25/17
  */
-abstract class BaseUseCase<R: BaseUseCase.RequestValues>(private val threadExecutor: ThreadExecutor,
-                                                         private val postExecutionThread: PostExecutionThread) {
+abstract class BaseUseCase<R: BaseUseCase.RequestValues>(threadExecutor: ThreadExecutor,
+                                                         postExecutionThread: PostExecutionThread) {
     lateinit var requestValues: R
 
     /**
@@ -62,13 +59,13 @@ abstract class BaseUseCase<R: BaseUseCase.RequestValues>(private val threadExecu
      * @param useCaseSubscriber The guy who will be listen to the observable build with
      * [.buildUseCaseObservable].
      */
-    open fun execute(request: R, useCaseSubscriber: Subscriber<*>) {
+    open fun execute(request: R, useCaseSubscriber: Observable<*>) {
         Preconditions.checkNotNull(request)
         Preconditions.checkNotNull(useCaseSubscriber)
 
 
         var observable: Observable<*> = buildUseCaseObservable()
-            .doOnUnsubscribe { AppLog.d("Unsubscribing subscription") }
+//            .doOnUnsubscribe { AppLog.d("Unsubscribing subscription") }
 
         // TODO(jieyi): 9/25/17 Here is not finished.
         // Assign the one of them to RxJava request.

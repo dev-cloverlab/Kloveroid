@@ -1,12 +1,10 @@
-package com.cloverlab.kloveroid.domain
+package com.cloverlab.kloveroid.usecases
 
-import com.cloverlab.kloveroid.data.source.IDataStore
-import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
-import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
 import com.cloverlab.kloveroid.mvp.models.FakeModel
-import rx.Observable
-import rx.Subscriber
-import rx.Subscription
+import com.cloverlab.kloveroid.repository.source.IDataStore
+import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
+import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor
+import io.reactivex.Observable
 
 
 /**
@@ -25,7 +23,7 @@ class CreateFakeUseCase constructor(threadExecutor: ThreadExecutor,
      * @param request           Send the data to data layer with request parameters.
      * @param useCaseSubscriber The guy who will be listen to the observable build with
      */
-    override fun execute(request: Requests, useCaseSubscriber: Subscriber<*>) {
+    override fun execute(request: Requests, useCaseSubscriber: io.reactivex.Observable<*>) {
         requestValues = request
 
         super.execute(request, useCaseSubscriber)

@@ -2,11 +2,11 @@ package com.cloverlab.kloveroid.internal.di.components
 
 import android.content.Context
 import com.cloverlab.kloveroid.App
-import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
-import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
 import com.cloverlab.kloveroid.internal.di.modules.AppModule
 import com.cloverlab.kloveroid.internal.di.modules.BindingActivityModule
 import com.cloverlab.kloveroid.internal.di.modules.RepositoryModule
+import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
+import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule

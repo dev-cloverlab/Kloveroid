@@ -1,6 +1,5 @@
 package com.cloverlab.kloveroid.ui.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,7 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class MainFragment: BaseFragment(), MainContract.View {
+class MainFragment: BaseFragment<MainContract.View, MainContract.Presenter>(), MainContract.View {
     companion object Factory {
         // The key name of the fragment initialization parameters.
         private val ARG_PARAM_: String = "param_"
@@ -38,7 +37,7 @@ class MainFragment: BaseFragment(), MainContract.View {
         }
     }
 
-    @Inject lateinit var presenter: MainContract.Presenter
+    @Inject override lateinit var presenter: MainContract.Presenter
     // The fragment initialization parameters.
     private var arg1: String? = null
 
@@ -54,27 +53,18 @@ class MainFragment: BaseFragment(), MainContract.View {
         super.onCreateView(inflater, container, savedInstanceState)
 
         presenter.setView(MainFragment@ this)
-        presenter.init()
 
         return rootView
     }
+    //endregion
 
-    override fun onResume() {
-        super.onResume()
-        presenter.resume()
+    //region Base fragment
+    override fun init(savedInstanceState: Bundle?) {
+        btn_test.setOnClickListener { RxBus.get().post("test") }
+        tv_show.text = "Hello World!!"
     }
 
-    override fun onPause() {
-        super.onPause()
-        presenter.pause()
-    }
-
-    override fun onDestroy() {
-        // After super.onDestroy() is executed, the presenter will be destroy. So the presenter should be
-        // executed before super.onDestroy().
-        presenter.destroy()
-        super.onDestroy()
-    }
+    override fun provideInflateView(): Int = R.layout.fragment_main
     //endregion
 
     //region Presenter implements
@@ -93,15 +83,5 @@ class MainFragment: BaseFragment(), MainContract.View {
     override fun showError(message: String) {
         Preconditions.checkNotNull(message)
     }
-
-    override fun context(): Context = activity.applicationContext
-
     //endregion
-
-    override fun init(savedInstanceState: Bundle?) {
-        btn_test.setOnClickListener { RxBus.get().post("test") }
-        tv_show.text = "Hello World!!"
-    }
-
-    override fun provideInflateView(): Int = R.layout.fragment_main
 }

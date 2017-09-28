@@ -1,6 +1,4 @@
-package com.cloverlab.kloveroid.domain.executor
-
-import rx.Scheduler
+package com.cloverlab.kloveroid.usecases.executor
 
 /**
  * Thread abstraction created to change the execution context from any thread to any other thread.

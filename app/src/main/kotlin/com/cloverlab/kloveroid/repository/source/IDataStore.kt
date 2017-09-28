@@ -1,7 +1,6 @@
-package com.cloverlab.kloveroid.data.source
+package com.cloverlab.kloveroid.repository.source
 
 import com.cloverlab.kloveroid.mvp.models.FakeModel
-import rx.Observable
 
 /**
  * Interface that represents a data store from where data is retrieved.

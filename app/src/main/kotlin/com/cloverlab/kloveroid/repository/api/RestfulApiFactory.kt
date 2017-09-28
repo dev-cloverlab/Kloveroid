@@ -1,8 +1,8 @@
-package com.cloverlab.kloveroid.api
+package com.cloverlab.kloveroid.repository.api
 
-import com.cloverlab.kloveroid.api.config.FakeConfig
-import com.cloverlab.kloveroid.api.config.IApiConfig
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.Network
+import com.cloverlab.kloveroid.repository.api.config.FakeConfig
+import com.cloverlab.kloveroid.repository.api.config.IApiConfig
 import javax.inject.Inject
 
 /**
@@ -13,7 +13,5 @@ import javax.inject.Inject
  */
 @Network
 class RestfulApiFactory @Inject constructor() {
-    fun createFakeConfig(): IApiConfig {
-        return FakeConfig()
-    }
+    fun createFakeConfig(): IApiConfig = FakeConfig()
 }

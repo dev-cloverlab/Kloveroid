@@ -8,7 +8,7 @@ buildscript {
         rx_kotlin_version = '2.1.0'
         rx_lifecycle_version = '2.1.0'
         rx_bus_version = '2.0.0'
-        rx_binding_kotlin_version = '1.0.0'
+        rx_binding_kotlin_version = '2.0.0'
         retrofit_2_version = '2.3.0'
         dagger_2_version = '2.11'
         gson_version = '2.4'

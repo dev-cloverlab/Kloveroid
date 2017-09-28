@@ -1,8 +1,6 @@
 package com.cloverlab.kloveroid.utilies
 
-import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
-import rx.Scheduler
-import rx.android.schedulers.AndroidSchedulers
+import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
 import javax.inject.Inject
 import javax.inject.Singleton
 

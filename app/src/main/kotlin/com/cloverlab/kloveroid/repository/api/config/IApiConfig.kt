@@ -1,4 +1,4 @@
-package com.cloverlab.kloveroid.api.config
+package com.cloverlab.kloveroid.repository.api.config
 
 /**
  * Interface of the setting of the difference http configurations.

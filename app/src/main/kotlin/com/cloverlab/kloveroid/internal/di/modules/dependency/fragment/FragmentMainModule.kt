@@ -1,12 +1,12 @@
 package com.cloverlab.kloveroid.internal.di.modules.dependency.fragment
 
-import com.cloverlab.kloveroid.data.repositories.DataRepository
-import com.cloverlab.kloveroid.domain.CreateFakeUseCase
-import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
-import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.PerFragment
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
 import com.cloverlab.kloveroid.mvp.presenters.MainPresenter
+import com.cloverlab.kloveroid.repository.repositories.DataRepository
+import com.cloverlab.kloveroid.usecases.CreateFakeUseCase
+import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
+import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor
 import dagger.Module
 import dagger.Provides
 

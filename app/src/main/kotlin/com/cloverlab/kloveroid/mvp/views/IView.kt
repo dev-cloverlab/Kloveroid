@@ -1,7 +1,5 @@
 package com.cloverlab.kloveroid.mvp.views
 
-import android.content.Context
-
 /**
  * Interface representing a View that will use to load data.
  *
@@ -35,9 +33,4 @@ interface IView {
      * @param message A string representing an error.
      */
     fun showError(message: String)
-
-    /**
-     * Get a [Context].
-     */
-    fun context(): Context
 }

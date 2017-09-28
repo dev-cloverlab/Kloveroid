@@ -1,9 +1,9 @@
 package com.cloverlab.kloveroid.internal.di.modules
 
 import android.content.Context
-import com.cloverlab.kloveroid.api.RestfulApiFactory
-import com.cloverlab.kloveroid.api.config.IApiConfig
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.Network
+import com.cloverlab.kloveroid.repository.api.RestfulApiFactory
+import com.cloverlab.kloveroid.repository.api.config.IApiConfig
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

@@ -52,12 +52,12 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:${rx_java_version}"
     implementation "io.reactivex.rxjava2:rxkotlin:${rx_kotlin_version}"
     // Rx kotlin binding
-    implementation "com.jakewharton.rxbinding:rxbinding-kotlin:${rx_binding_kotlin_version}"
-    implementation "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:${rx_binding_kotlin_version}"
-    implementation "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:${rx_binding_kotlin_version}"
-    implementation "com.jakewharton.rxbinding:rxbinding-design-kotlin:${rx_binding_kotlin_version}"
-    implementation "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:${rx_binding_kotlin_version}"
-    implementation "com.jakewharton.rxbinding:rxbinding-leanback-v17-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-design-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:${rx_binding_kotlin_version}"
+    implementation "com.jakewharton.rxbinding2:rxbinding-leanback-v17-kotlin:${rx_binding_kotlin_version}"
     // RxBus
     implementation("com.hwangjr.rxbus:rxbus:${rx_bus_version}", {
         exclude group: "com.jakewharton.timber", module: "timber"

@@ -3,9 +3,9 @@ package com.cloverlab.kloveroid.internal.di.modules
 import android.app.Application
 import android.content.Context
 import com.cloverlab.kloveroid.App
-import com.cloverlab.kloveroid.data.executor.JobExecutor
-import com.cloverlab.kloveroid.domain.executor.PostExecutionThread
-import com.cloverlab.kloveroid.domain.executor.ThreadExecutor
+import com.cloverlab.kloveroid.usecases.executor.JobExecutor
+import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
+import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor
 import com.cloverlab.kloveroid.utilies.UIThread
 import dagger.Module
 import dagger.Provides

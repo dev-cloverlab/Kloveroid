@@ -1,9 +1,9 @@
 package com.cloverlab.kloveroid.internal.di.components
 
 import com.cloverlab.kloveroid.App
-import com.cloverlab.kloveroid.data.source.CloudDataStore
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.Network
 import com.cloverlab.kloveroid.internal.di.modules.NetModule
+import com.cloverlab.kloveroid.repository.source.CloudDataStore
 import dagger.Component
 
 /**
