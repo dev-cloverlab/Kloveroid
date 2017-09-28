@@ -10,19 +10,23 @@ project purpose.
 
 We're using some libraries for building a testable and module architecture.
 
+### UI
+
+- Anko 0.10.1
+
 ### Streaming
 
-- RxJava 2
+- RxJava 2.1.3
 
 ### Dependency Injection
 
-- Dagger 2
+- Dagger 2.11
 
 ### Parser
 
-- Gson
+- Gson 2.8.1
 
 ### Network
 
-- Retrofit 2
-- Glide
+- Retrofit 2.3.0
+- Glide 4.0.0
