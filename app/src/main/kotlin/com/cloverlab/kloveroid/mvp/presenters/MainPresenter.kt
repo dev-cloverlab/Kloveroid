@@ -2,7 +2,6 @@ package com.cloverlab.kloveroid.mvp.presenters
 
 import com.cloverlab.kloveroid.domain.CreateFakeUseCase
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
-import com.cloverlab.kloveroid.mvp.models.FakeModel
 import dagger.internal.Preconditions
 
 /**
@@ -25,7 +24,7 @@ class MainPresenter(val fakeCase: CreateFakeUseCase): MainContract.Presenter {
     }
 
     override fun init() {
-        val request = CreateFakeUseCase.Requests(FakeModel("Jieyi", 19, "H"))
+//        val request = CreateFakeUseCase.Requests(FakeModel("Jieyi", 19, "H"))
 //        fakeCase.execute(request, fakeSubscriber)
     }
 

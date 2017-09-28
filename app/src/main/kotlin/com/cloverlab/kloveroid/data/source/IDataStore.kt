@@ -11,7 +11,7 @@ import rx.Observable
  */
 interface IDataStore {
     /**
-     * Get an [rx.Observable] which will emit a List of [FakeEntity].
+     * Get an [rx.Observable] which will emit a List of [FakeModel].
      */
     fun createEntity(model: FakeModel): Observable<FakeModel>
 }

@@ -3,7 +3,6 @@ package com.cloverlab.kloveroid.ui
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
-import com.cloverlab.kloveroid.internal.di.modules.ActivityModule
 import com.cloverlab.kloveroid.utilies.AppLog
 import com.hwangjr.rxbus.RxBus
 import com.hwangjr.rxbus.annotation.Subscribe
@@ -70,14 +69,14 @@ open class BaseActivity: RxAppCompatActivity(), HasFragmentInjector, HasSupportF
      */
     override fun fragmentInjector(): AndroidInjector<android.app.Fragment> = fragmentInjector
 
-    /**
-     * Get an Activity module for dependency injection.
-     *
-     * @return [ActivityModule]
-     */
-    protected fun getActivityModule(): ActivityModule {
-        return ActivityModule(this)
-    }
+//    /**
+//     * Get an Activity module for dependency injection.
+//     *
+//     * @return [FragmentMainModule]
+//     */
+//    protected fun getActivityModule(): FragmentMainModule {
+//        return FragmentMainModule(this)
+//    }
 
     /**
      * Adds a [Fragment] to this activity's layout.

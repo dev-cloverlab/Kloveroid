@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.cloverlab.kloveroid.R
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
-import com.cloverlab.kloveroid.mvp.presenters.MainPresenter
 import com.cloverlab.kloveroid.ui.BaseFragment
 import com.hwangjr.rxbus.RxBus
 import dagger.internal.Preconditions
@@ -30,8 +29,8 @@ class MainFragment: BaseFragment(), MainContract.View {
          * @return A new instance of fragment BlankFragment.
          */
         fun newInstance(arg1: String): MainFragment {
-            val fragment: MainFragment = MainFragment()
-            val bundle: Bundle = Bundle()
+            val fragment = MainFragment()
+            val bundle = Bundle()
             bundle.putString(ARG_PARAM_, arg1)
             fragment.arguments = bundle
 
@@ -39,7 +38,7 @@ class MainFragment: BaseFragment(), MainContract.View {
         }
     }
 
-    @Inject lateinit var presenter: MainPresenter
+    @Inject lateinit var presenter: MainContract.Presenter
     // The fragment initialization parameters.
     private var arg1: String? = null
 
@@ -98,6 +97,7 @@ class MainFragment: BaseFragment(), MainContract.View {
     override fun context(): Context = activity.applicationContext
 
     //endregion
+
     override fun init(savedInstanceState: Bundle?) {
         btn_test.setOnClickListener { RxBus.get().post("test") }
         tv_show.text = "Hello World!!"

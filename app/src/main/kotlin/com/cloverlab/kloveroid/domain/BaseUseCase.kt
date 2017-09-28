@@ -66,6 +66,7 @@ abstract class BaseUseCase<R: BaseUseCase.RequestValues>(private val threadExecu
         Preconditions.checkNotNull(request)
         Preconditions.checkNotNull(useCaseSubscriber)
 
+
         var observable: Observable<*> = buildUseCaseObservable()
             .doOnUnsubscribe { AppLog.d("Unsubscribing subscription") }
 
