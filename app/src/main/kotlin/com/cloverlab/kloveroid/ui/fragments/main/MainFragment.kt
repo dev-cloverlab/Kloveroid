@@ -1,4 +1,4 @@
-package com.cloverlab.kloveroid.ui.fragments
+package com.cloverlab.kloveroid.ui.fragments.main
 
 import android.os.Bundle
 import com.cloverlab.kloveroid.R
@@ -43,7 +43,7 @@ class MainFragment: MvpFragment<MainContract.View, MainContract.Presenter>(), Ma
         super.onCreate(savedInstanceState)
 
         // Get the arguments from the bundle here.
-        arg1 = arguments?.getString(MainFragment.ARG_PARAM_)
+        arg1 = arguments?.getString(ARG_PARAM_)
     }
     //endregion
 

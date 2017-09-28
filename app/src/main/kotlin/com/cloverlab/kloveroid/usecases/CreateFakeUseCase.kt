@@ -16,30 +16,10 @@ import io.reactivex.Observable
 class CreateFakeUseCase constructor(threadExecutor: ThreadExecutor,
                                     postExecutionThread: PostExecutionThread,
                                     private val repository: IDataStore):
-    BaseUseCase<CreateFakeUseCase.Requests>(threadExecutor, postExecutionThread) {
-    /**
-     * Executes the current use case with request parameters.
-     *
-     * @param request           Send the data to data layer with request parameters.
-     * @param useCaseSubscriber The guy who will be listen to the observable build with
-     */
-    override fun execute(request: Requests, useCaseSubscriber: io.reactivex.Observable<*>) {
-        requestValues = request
+    BaseUseCase<FakeModel, CreateFakeUseCase.Requests>(threadExecutor, postExecutionThread) {
+    override fun fetchUsecase(): Observable<FakeModel> = repository.createEntity(requestValues?.fakeModel ?:
+        FakeModel("", 33333, ""))
 
-        super.execute(request, useCaseSubscriber)
-    }
-
-    /**
-     * Builds an [Observable] which will be used when executing the current [BaseUseCase].
-     *
-     * @return [Observable] for connecting with a [Subscription] from the kotlin layer.
-     */
-    override fun buildUseCaseObservable(): Observable<*> {
-        return repository.createEntity(requestValues.fakeModel)
-    }
-
-    /**
-     * Wrapping data requests for general situation.
-     */
-    class Requests(val fakeModel: FakeModel): BaseUseCase.RequestValues()
+    /** Wrapping data requests for general situation.*/
+    class Requests(val fakeModel: FakeModel): BaseUseCase.RequestValues
 }

@@ -11,7 +11,7 @@ import io.reactivex.Observable
  */
 interface IDataStore {
     /**
-     * Get an [rx.Observable] which will emit a List of [FakeModel].
+     * Get an [Observable] which will emit a List of [FakeModel].
      */
     fun createEntity(model: FakeModel): Observable<FakeModel>
 }

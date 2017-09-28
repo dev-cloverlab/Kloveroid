@@ -2,7 +2,7 @@ package com.cloverlab.kloveroid.internal.di.modules
 
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.PerFragment
 import com.cloverlab.kloveroid.internal.di.modules.dependency.fragment.FragmentMainModule
-import com.cloverlab.kloveroid.ui.fragments.MainFragment
+import com.cloverlab.kloveroid.ui.fragments.main.MainFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

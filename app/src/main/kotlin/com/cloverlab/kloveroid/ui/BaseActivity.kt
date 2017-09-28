@@ -1,6 +1,7 @@
 package com.cloverlab.kloveroid.ui
 
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.view.View
 import com.cloverlab.kloveroid.utilies.AppLog
@@ -44,9 +45,11 @@ abstract class BaseActivity: RxAppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+        setContentView(provideLayoutId())
 
         // Register RxBus.
         RxBus.get().register(busEvent)
+        init(savedInstanceState)
     }
 
     override fun onDestroy() {
@@ -56,6 +59,11 @@ abstract class BaseActivity: RxAppCompatActivity(),
         RxBus.get().unregister(busEvent)
     }
     //endregion
+
+    abstract fun init(savedInstanceState: Bundle?)
+
+    @LayoutRes
+    abstract fun provideLayoutId(): Int
 
     /**
      * Providing the fragment injector([Fragment]) for the searchFragments.

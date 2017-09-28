@@ -3,10 +3,8 @@ package com.cloverlab.kloveroid.usecases
 import com.cloverlab.kloveroid.usecases.BaseUseCase.RequestValues
 import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
 import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor
-import com.trello.rxlifecycle2.android.ActivityEvent
-import com.trello.rxlifecycle2.android.FragmentEvent
-import dagger.internal.Preconditions
 import io.reactivex.Observable
+import io.reactivex.Observer
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.ThreadPoolExecutor
@@ -27,65 +25,59 @@ import java.util.concurrent.ThreadPoolExecutor
  * @author Jieyi Wu
  * @since 09/25/17
  */
-abstract class BaseUseCase<R: BaseUseCase.RequestValues>(threadExecutor: ThreadExecutor,
-                                                         postExecutionThread: PostExecutionThread) {
-    lateinit var requestValues: R
+abstract class BaseUseCase<T, R: BaseUseCase.RequestValues>(threadExecutor: ThreadExecutor,
+                                                            postExecutionThread: PostExecutionThread) {
+    /** Provide a common parameter variable for the children class. */
+    var requestValues: R? = null
+
+    /**
+     * Executes the current use case.
+     *
+     * @param observer a reaction of [Observer] from viewmodel, the data are omitted from database or remote.
+     */
+    fun execute(observer: Observer<T>) = buildUseCaseObservable().subscribe(observer)
+
+    /**
+     * Executes the current use case with request parameters.
+     *
+     * @param parameter the parameter for retrieving data.
+     * @param observer  a reaction of [Observer] from viewmodel, the data are omitted from database or remote.
+     */
+    fun execute(parameter: R, observer: Observer<T>) {
+        requestValues = parameter
+        buildUseCaseObservable().subscribe(observer)
+    }
+
+    /**
+     * Choose a method from [IDataStore] and fit this usecase for return some data.
+     *
+     * @return an [Observer] for chaining on working threads.
+     */
+    abstract protected fun fetchUsecase(): Observable<T>
 
     /**
      * Obtain a thread for while [Observable] is doing their tasks.
      *
      * @return [Scheduler] implement from [PostExecutionThread].
      */
-    protected val observeScheduler: Scheduler = postExecutionThread.scheduler
+    open protected val observeScheduler: Scheduler = postExecutionThread.scheduler
 
     /**
      * Obtain a thread from [ThreadPoolExecutor] for while [Scheduler] is doing their tasks.
      *
      * @return [Scheduler] implement from [ThreadExecutor].
      */
-    protected val subscribeScheduler: Scheduler = Schedulers.from(threadExecutor)
+    open protected val subscribeScheduler: Scheduler = Schedulers.from(threadExecutor)
 
     /**
-     * Builds an [Observable] which will be used when executing the current [BaseUseCase].
+     * Builds an [Observable] which will be used when executing the current [BaseUsecase].
      *
-     * @return [Observable] for connecting with a [Subscription] from the kotlin layer.
+     * @return [Observable] for connecting with a [Observer] from the kotlin layer.
      */
-    protected abstract fun buildUseCaseObservable(): Observable<*>
+    private fun buildUseCaseObservable(): Observable<T> = fetchUsecase().
+        subscribeOn(subscribeScheduler).
+        observeOn(observeScheduler)
 
-    /**
-     * Executes the current use case with request parameters.
-     *
-     * @param request           Send the data to data layer with request parameters.
-     * @param useCaseSubscriber The guy who will be listen to the observable build with
-     * [.buildUseCaseObservable].
-     */
-    open fun execute(request: R, useCaseSubscriber: Observable<*>) {
-        Preconditions.checkNotNull(request)
-        Preconditions.checkNotNull(useCaseSubscriber)
-
-
-        var observable: Observable<*> = buildUseCaseObservable()
-//            .doOnUnsubscribe { AppLog.d("Unsubscribing subscription") }
-
-        // TODO(jieyi): 9/25/17 Here is not finished.
-        // Assign the one of them to RxJava request.
-//        if (null != request.fragmentLifecycle) {
-//            observable = observable.compose(RxLifecycleAndroid.bindFragment(request.fragmentLifecycle!!))
-//        }
-//        else if (null != request.activityLifecycle) {
-//            observable = observable.compose(RxLifecycleAndroid.bindActivity(request.activityLifecycle!!))
-//        }
-
-        observable.subscribeOn(subscribeScheduler)
-            .observeOn(observeScheduler)
-//            .subscribe(useCaseSubscriber)
-    }
-
-    /**
-     * Interface for wrap a data for passing to a request.
-     */
-    abstract class RequestValues {
-        var fragmentLifecycle: Observable<FragmentEvent>? = null
-        var activityLifecycle: Observable<ActivityEvent>? = null
-    }
+    /** Interface for wrap a data for passing to a request.*/
+    interface RequestValues
 }

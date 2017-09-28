@@ -1,23 +1,23 @@
-package com.cloverlab.kloveroid.mvp.presenters
+package com.cloverlab.kloveroid.ui.fragments.main
 
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
-import com.cloverlab.kloveroid.mvp.contracts.MainContract.View
 import com.cloverlab.kloveroid.mvp.models.FakeModel
 import com.cloverlab.kloveroid.usecases.CreateFakeUseCase
-import com.devrapid.kotlinknifer.observable
+import com.devrapid.kotlinknifer.logw
+import com.devrapid.kotlinknifer.observer
 
 /**
  *
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class MainPresenter(val fakeCase: CreateFakeUseCase): MainContract.Presenter() {
-    override lateinit var view: View
-
+class MainPresenter(private val fakeCase: CreateFakeUseCase): MainContract.Presenter() {
     //region View implementation
     override fun init() {
         val request = CreateFakeUseCase.Requests(FakeModel("Jieyi", 19, "H"))
-        fakeCase.execute(request, observable<FakeModel> { })
+        fakeCase.execute(request, observer { logw(it) })
+
+        view.hideLoading()
     }
     //endregion
 }
