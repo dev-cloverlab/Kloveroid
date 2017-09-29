@@ -8,6 +8,8 @@ project purpose.
 
 ![Architecture](https://github.com/dev-cloverlab/Kloveroid/blob/master/img/architecture.png)
 
+[img MVP Architecture](https://sketchboard.me/JAGLNMNjXMMP)
+
 # Third-party Library
 
 We're using some libraries for building a testable and module architecture.
