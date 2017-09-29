@@ -6,6 +6,8 @@ project purpose.
 
 # Architecture
 
+![Architecture](https://github.com/dev-cloverlab/Kloveroid/blob/master/img/architecture.png)
+
 # Third-party Library
 
 We're using some libraries for building a testable and module architecture.
