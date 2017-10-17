@@ -18,7 +18,7 @@ abstract class MvpFragment<V: IView, P: BasePresenter<V>>: BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter.create()
+        presenter.create(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

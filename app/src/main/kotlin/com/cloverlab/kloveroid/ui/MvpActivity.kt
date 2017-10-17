@@ -17,7 +17,7 @@ abstract class MvpActivity<V: IView, P: BasePresenter<V>>: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.view = provideCurrentActivityView()
-        presenter.create()
+        presenter.create(this)
     }
 
     override fun onContentChanged() {

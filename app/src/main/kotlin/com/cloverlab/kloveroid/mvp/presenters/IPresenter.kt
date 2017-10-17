@@ -1,5 +1,7 @@
 package com.cloverlab.kloveroid.mvp.presenters
 
+import com.trello.rxlifecycle2.LifecycleProvider
+
 /**
  * Interface representing a Presenter in a model view presenter (MVP) pattern.
  *
@@ -16,7 +18,7 @@ interface IPresenter {
      * Method that control the lifecycle of the view. It should be called in the view's (Activity or Fragment)
      * onCreate() method.
      */
-    fun create()
+    fun <E> create(lifecycleProvider: LifecycleProvider<E>)
 
     /**
      * Method that control the lifecycle of the view. It should be called in the view's (Activity or Fragment)

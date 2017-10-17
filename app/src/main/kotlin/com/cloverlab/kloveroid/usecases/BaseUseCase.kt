@@ -3,6 +3,9 @@ package com.cloverlab.kloveroid.usecases
 import com.cloverlab.kloveroid.usecases.BaseUseCase.RequestValues
 import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
 import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor
+import com.devrapid.kotlinknifer.ObserverPlugin
+import com.trello.rxlifecycle2.LifecycleProvider
+import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.Scheduler
@@ -35,17 +38,62 @@ abstract class BaseUseCase<T, R: BaseUseCase.RequestValues>(threadExecutor: Thre
      *
      * @param observer a reaction of [Observer] from viewmodel, the data are omitted from database or remote.
      */
-    fun execute(observer: Observer<T>) = buildUseCaseObservable().subscribe(observer)
+    fun execute(lifecycleProvider: LifecycleProvider<*>? = null, observer: Observer<T>) = lifecycleProvider?.let {
+        buildUseCaseObservable().bindToLifecycle(it).subscribe(observer)
+    } ?: buildUseCaseObservable().subscribe(observer)
 
     /**
      * Executes the current use case with request parameters.
      *
      * @param parameter the parameter for retrieving data.
-     * @param observer  a reaction of [Observer] from viewmodel, the data are omitted from database or remote.
+     * @param observer a reaction of [Observer] from viewmodel, the data are omitted from database or remote.
      */
-    fun execute(parameter: R, observer: Observer<T>) {
+    fun execute(parameter: R, lifecycleProvider: LifecycleProvider<*>? = null, observer: Observer<T>) {
         requestValues = parameter
-        buildUseCaseObservable().subscribe(observer)
+        execute(lifecycleProvider, observer)
+    }
+
+    /**
+     * Executes the current use case.
+     *
+     * @param lifecycleProvider LifecycleProvider<*>?=null :
+     */
+    fun execute(lifecycleProvider: LifecycleProvider<*>? = null) = lifecycleProvider?.let {
+        buildUseCaseObservable().bindToLifecycle(it)
+    } ?: buildUseCaseObservable()
+
+    /**
+     * Executes the current use case with request parameters.
+     *
+     * @param parameter the parameter for retrieving data.
+     * @param lifecycleProvider an activity or a fragment of the [LifecycleProvider] object.
+     */
+    fun execute(parameter: R, lifecycleProvider: LifecycleProvider<*>? = null): Observable<T> {
+        requestValues = parameter
+        return execute(lifecycleProvider)
+    }
+
+    /**
+     * Executes the current use case.
+     *
+     * @param lifecycleProvider an activity or a fragment of the [LifecycleProvider] object.
+     * @param observer a reaction of [ObserverPlugin] from viewmodel, the data are omitted from database or remote.
+     */
+    fun execute(lifecycleProvider: LifecycleProvider<*>? = null, observer: ObserverPlugin<T>.() -> Unit) =
+        lifecycleProvider?.let {
+            buildUseCaseObservable().bindToLifecycle(it).subscribe(ObserverPlugin<T>().apply(observer))
+        } ?: buildUseCaseObservable().subscribe(ObserverPlugin<T>().apply(observer))
+
+    /**
+     * Executes the current use case with request parameters.
+     *
+     * @param parameter the parameter for retrieving data.
+     * @param lifecycleProvider an activity or a fragment of the [LifecycleProvider] object.
+     * @param observer a reaction of [ObserverPlugin] from viewmodel, the data are omitted from database or remote.
+     */
+    fun execute(parameter: R, lifecycleProvider: LifecycleProvider<*>? = null, observer: ObserverPlugin<T>.() -> Unit) {
+        requestValues = parameter
+        execute(lifecycleProvider, observer)
     }
 
     /**
