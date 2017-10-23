@@ -6,6 +6,19 @@ project purpose.
 
 # Architecture
 
+We're using `clean architecture` for this basic project. There are the components as the below
+
+- MVP
+  - View
+  - Presenter
+  - Model
+- Use Case
+- Repository pattern
+  - Remote Repository
+  - Local Repository
+
+There is an image for this project.
+
 ![Architecture](https://github.com/dev-cloverlab/Kloveroid/blob/master/img/architecture.png)
 
 [img MVP Architecture](https://sketchboard.me/JAGLNMNjXMMP)
