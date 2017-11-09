@@ -1,3 +1,4 @@
+[![GitHub release](https://img.shields.io/github/release/dev-cloverlab/Kloveroid.svg?style=flat-square)](https://github.com/dev-cloverlab/Kloveroid)
 [![license](https://img.shields.io/github/license/dev-cloverlab/Kloveroid.svg?style=flat-square)](https://github.com/dev-cloverlab/Kloveroid)
 
 # Kloveroid
@@ -31,21 +32,22 @@ We're using some libraries for building a testable and module architecture.
 
 ### UI
 
-- Anko 0.10.1
+[Anko](https://img.shields.io/badge/Anko-0.10.1-green.svg?style=flat-square)
 
 ### Streaming
 
-- RxJava 2.1.3
+![RxJava](https://img.shields.io/badge/RxJava-2.1.6-green.svg?style=flat-square)
+![RxKotlin](https://img.shields.io/badge/RxKotlin-2.1.0-green.svg?style=flat-square)
 
 ### Dependency Injection
 
-- Dagger 2.11
+![Dagger](https://img.shields.io/badge/Dagger-2.11-green.svg?style=flat-square)
 
 ### Parser
 
-- Gson 2.8.1
+![Gson](https://img.shields.io/badge/Gson-2.8.2-green.svg?style=flat-square)
 
 ### Network
 
-- Retrofit 2.3.0
-- Glide 4.0.0
+![Retrofit](https://img.shields.io/badge/Retrofit-2.3.0-green.svg?style=flat-square)
+![Glide](https://img.shields.io/badge/Glide-4.0.0-green.svg?style=flat-square)
