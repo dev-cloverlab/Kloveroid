@@ -12,7 +12,7 @@ buildscript {
         retrofit_2_version = '2.3.0'
         dagger_2_version = '2.11'
         gson_version = '2.4'
-        gilde_version = '4.0.0'
+        gilde_version = '4.3.1'
     }
     repositories {
         jcenter()
