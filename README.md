@@ -1,3 +1,5 @@
+[![license](https://img.shields.io/github/license/dev-cloverlab/Kloveroid.svg?style=flat-square)](https://github.com/dev-cloverlab/Kloveroid)
+
 # Kloveroid
 
 This is an basic architecture of MVP and clean code for android. This project provides a complete
