@@ -16,12 +16,9 @@ import com.cloverlab.kloveroid.mvp.views.IView
 abstract class MvpFragment<V: IView, P: BasePresenter<V>>: BaseFragment() {
     abstract var presenter: P
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        presenter.create(this)
-    }
-
+    //region Fragment lifecycle
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        presenter.create(this)
         presenter.view = provideCurrentFragmentView()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
