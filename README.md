@@ -9,7 +9,7 @@ project purpose.
 
 # Architecture
 
-We're using `clean architecture` for this basic project. There are the components as the below
+We're using [Uncle Bob's Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) for this basic project. There are the components as the below
 
 - MVP
   - View
