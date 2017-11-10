@@ -55,6 +55,29 @@ override fun provideCurrentFragmentView(): MainContract.View = this
 
 3. Each **presenters** is for a specific `activity` or `fragment`. We're considering how to separate
 or reuse the presenter conveniently.
+4. The usecases are really easy to implement. The purpose is that decoupling from the data layer and
+presenter layer, and with individual business logic. For example, getMemberList, removeMemberList,
+editMember, ... etc.
+5. The most difficult part is **_repository_**, we'll have some strategies for how to retrieve the data
+from remote or local or cache.
+
+This is simple example for just only retrieving the data from remote database.
+
+> Here we should judge we need to use cache or local data or the newest data from the remote.
+
+```kotlin
+class DataRepository @Inject constructor(@Local private var local: IDataStore,
+                                         @Remote private var remote: IDataStore): IDataStore {
+    override fun createEntity(fakeModel: FakeModel): Observable<FakeModel> {
+        // Implement retrieving the data from cache, local, or remote.
+        return remote.createEntity(fakeModel)
+    }
+}
+```
+
+6. Due to the needs, you must have some components which aren't including here. Now we're still
+processing this repository. Basically we're following the `clean architecture`'s folder structure.
+If you'd like it them now, please give us good suggestions or PR. Also, you can check [Uncle Bob's clean architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) here.
 
 # Third-party Library
 
