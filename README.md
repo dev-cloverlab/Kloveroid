@@ -28,7 +28,33 @@ There is an image for this project.
 
 # How to use
 
+1. You should fork this repo to yours
+2. We use the two types of the activity and the fragment. The scenario isn't always that we have
+to implement with a **presenter**. When you need a **presenter**, you just inherit the normal
+**MvpActivity** or **MvpFragment**; otherwise you'd better use **BaseActivity** or **BaseFragment**
+because we've prepared a good base class for you!
 
+If you implement the `BaseActivity`m you just implement this two methods, then done!
+```kotlin
+override fun init(savedInstanceState: Bundle?) { }
+
+// activity layout id.
+override fun provideLayoutId(): Int = R.layout.activity_main
+```
+
+Or using `MvpFragment`
+```kotlin
+override fun init(savedInstanceState: Bundle?) { }
+
+// fragment layout id.
+override fun provideInflateView(): Int = R.layout.fragment_main
+
+// This is for the presenter.
+override fun provideCurrentFragmentView(): MainContract.View = this
+```
+
+3. Each **presenters** is for a specific `activity` or `fragment`. We're considering how to separate
+or reuse the presenter conveniently.
 
 # Third-party Library
 
