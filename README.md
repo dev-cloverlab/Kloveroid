@@ -3,7 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/dev-cloverlab/Kloveroid.svg?style=flat-square)](https://github.com/dev-cloverlab/Kloveroid)
 [![license](https://img.shields.io/github/license/dev-cloverlab/Kloveroid.svg?style=flat-square)](https://github.com/dev-cloverlab/Kloveroid)
 
-![Kloveroid](https://github.com/dev-cloverlab/Kloveroid/blob/master/img/banner.jpg?raw=true)
+![Kloveroid](https://github.com/dev-cloverlab/Kloveroid/blob/master/img/banner.jpg)
 
 This is an basic architecture of MVP and clean code for android. This project provides a complete
 components and the necessary MVP code in the beginning. To build an android app rapidly is this is
@@ -106,3 +106,7 @@ We're using some libraries for building a testable and module architecture.
 
 [![Retrofit](https://img.shields.io/badge/Retrofit-2.3.0-green.svg?style=flat-square)](https://github.com/square/retrofit)
 [![Glide](https://img.shields.io/badge/Glide-4.3.1-green.svg?style=flat-square)](https://github.com/bumptech/glide)
+
+### Utils
+
+We
