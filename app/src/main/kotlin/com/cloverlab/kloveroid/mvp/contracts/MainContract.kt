@@ -11,7 +11,7 @@ import com.cloverlab.kloveroid.mvp.views.IView
  * @since 09/25/17
  */
 interface MainContract {
-    abstract class Presenter: BasePresenter<MainContract.View>()
+    abstract class Presenter : BasePresenter<MainContract.View>()
 
-    interface View: IView
+    interface View : IView
 }

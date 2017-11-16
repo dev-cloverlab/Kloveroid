@@ -1,4 +1,4 @@
-package com.touchin.constant
+package com.cloverlab.kloveroid.utilies.constant
 
 /**
  * RxBus tags define.

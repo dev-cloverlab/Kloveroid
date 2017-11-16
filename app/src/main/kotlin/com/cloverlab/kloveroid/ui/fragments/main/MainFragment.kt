@@ -14,7 +14,7 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class MainFragment: MvpFragment<MainContract.View, MainContract.Presenter>(), MainContract.View {
+class MainFragment : MvpFragment<MainContract.View, MainContract.Presenter>(), MainContract.View {
     companion object Factory {
         // The key name of the fragment initialization parameters.
         private val ARG_PARAM_: String = "param_"

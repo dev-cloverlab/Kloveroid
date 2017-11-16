@@ -22,7 +22,7 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-abstract class BaseFragment: RxFragment(), HasSupportFragmentInjector {
+abstract class BaseFragment : RxFragment(), HasSupportFragmentInjector {
     /** From an activity for providing to children searchFragments. */
     @Inject lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
     protected val appContext: Context by lazy { activity.applicationContext }

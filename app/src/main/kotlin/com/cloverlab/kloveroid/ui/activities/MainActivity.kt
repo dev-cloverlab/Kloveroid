@@ -10,7 +10,7 @@ import com.cloverlab.kloveroid.ui.fragments.main.MainFragment
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class MainActivity: BaseActivity() {
+class MainActivity : BaseActivity() {
     override fun init(savedInstanceState: Bundle?) {
         //apply background bitmap if we have one
         if (savedInstanceState == null) {

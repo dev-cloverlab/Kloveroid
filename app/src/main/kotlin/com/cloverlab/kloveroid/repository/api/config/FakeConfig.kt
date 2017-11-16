@@ -4,7 +4,7 @@ package com.cloverlab.kloveroid.repository.api.config
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class FakeConfig: IApiConfig {
+class FakeConfig : IApiConfig {
     override val apiBaseUrl: String = BASE_URL
 
     companion object {

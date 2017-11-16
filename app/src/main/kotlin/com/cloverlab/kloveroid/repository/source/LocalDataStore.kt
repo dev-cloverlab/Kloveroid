@@ -7,7 +7,7 @@ import io.reactivex.Observable
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class LocalDataStore: IDataStore {
+class LocalDataStore : IDataStore {
     override fun createEntity(model: FakeModel): Observable<FakeModel> {
         TODO("not yet")
     }

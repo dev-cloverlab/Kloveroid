@@ -23,10 +23,10 @@ import javax.inject.Singleton
     RepositoryModule::class,
     BindingActivityModule::class,
     AndroidSupportInjectionModule::class))
-interface AppComponent: AndroidInjector<App> {
+interface AppComponent : AndroidInjector<App> {
     /** [AndroidInjector] Builder for using on this whole app. */
     @Component.Builder
-    abstract class Builder: AndroidInjector.Builder<App>()
+    abstract class Builder : AndroidInjector.Builder<App>()
 
     /** Providing to dependence components. */
     fun context(): Context

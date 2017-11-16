@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.view.View
-import com.cloverlab.kloveroid.utilies.AppLog
+import com.cloverlab.kloveroid.utilies.constant.RxbusTag
+import com.devrapid.kotlinknifer.logw
 import com.hwangjr.rxbus.RxBus
 import com.hwangjr.rxbus.annotation.Subscribe
 import com.hwangjr.rxbus.annotation.Tag
-import com.touchin.constant.RxbusTag
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -24,7 +24,7 @@ import javax.inject.Inject
  * @author Jieyi Wu
  * @since 09/25/17
  */
-abstract class BaseActivity: RxAppCompatActivity(),
+abstract class BaseActivity : RxAppCompatActivity(),
     HasFragmentInjector,
     HasSupportFragmentInjector {
     /** For providing to support searchFragments. */
@@ -37,7 +37,7 @@ abstract class BaseActivity: RxAppCompatActivity(),
     protected var busEvent = object {
         @Subscribe(tags = arrayOf(Tag(RxbusTag.NAVIGATOR)))
         fun test(test: String) {
-            AppLog.d(test)
+            logw()
         }
     }
 

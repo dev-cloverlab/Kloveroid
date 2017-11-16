@@ -10,7 +10,7 @@ import com.cloverlab.kloveroid.mvp.views.IView
  * @author Jieyi Wu
  * @since 09/28/17
  */
-abstract class MvpActivity<V: IView, P: BasePresenter<V>>: BaseActivity() {
+abstract class MvpActivity<V : IView, P : BasePresenter<V>> : BaseActivity() {
     abstract var presenter: P
 
     //region Activity lifecycle

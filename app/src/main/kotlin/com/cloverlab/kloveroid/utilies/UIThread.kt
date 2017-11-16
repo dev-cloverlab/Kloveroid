@@ -14,6 +14,6 @@ import javax.inject.Singleton
  * @since 09/25/17
  */
 @Singleton
-class UIThread @Inject constructor(): PostExecutionThread {
+class UIThread @Inject constructor() : PostExecutionThread {
     override val scheduler: Scheduler = AndroidSchedulers.mainThread()
 }

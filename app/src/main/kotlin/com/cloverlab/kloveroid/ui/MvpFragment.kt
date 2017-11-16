@@ -13,7 +13,7 @@ import com.cloverlab.kloveroid.mvp.views.IView
  * @author Jieyi Wu
  * @since 09/28/17
  */
-abstract class MvpFragment<V: IView, P: BasePresenter<V>>: BaseFragment() {
+abstract class MvpFragment<V : IView, P : BasePresenter<V>> : BaseFragment() {
     abstract var presenter: P
 
     //region Fragment lifecycle

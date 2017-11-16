@@ -14,7 +14,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class DataRepository @Inject constructor(@Local private var local: IDataStore,
-                                         @Remote private var remote: IDataStore): IDataStore {
+                                         @Remote private var remote: IDataStore) : IDataStore {
     override fun createEntity(fakeModel: FakeModel): Observable<FakeModel> {
         return remote.createEntity(fakeModel)
     }

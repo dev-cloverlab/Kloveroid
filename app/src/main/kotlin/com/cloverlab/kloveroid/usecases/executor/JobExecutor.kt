@@ -12,7 +12,7 @@ import javax.inject.Singleton
  * Decorated [ThreadPoolExecutor]
  */
 @Singleton
-class JobExecutor @Inject constructor(): ThreadExecutor {
+class JobExecutor @Inject constructor() : ThreadExecutor {
     companion object {
         private const val INITIAL_POOL_SIZE = 3
         private const val MAX_POOL_SIZE = 5
@@ -39,7 +39,7 @@ class JobExecutor @Inject constructor(): ThreadExecutor {
         threadPoolExecutor.execute(runnable)
     }
 
-    private class JobThreadFactory: ThreadFactory {
+    private class JobThreadFactory : ThreadFactory {
         companion object {
             private val THREAD_NAME = "android_"
         }

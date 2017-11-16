@@ -15,11 +15,11 @@ import io.reactivex.Observable
  */
 class CreateFakeUseCase constructor(threadExecutor: ThreadExecutor,
                                     postExecutionThread: PostExecutionThread,
-                                    private val repository: IDataStore):
+                                    private val repository: IDataStore) :
     BaseUseCase<FakeModel, CreateFakeUseCase.Requests>(threadExecutor, postExecutionThread) {
     override fun fetchUsecase(): Observable<FakeModel> = repository.createEntity(requestValues?.fakeModel ?:
         FakeModel("", 33333, ""))
 
     /** Wrapping data requests for general situation.*/
-    class Requests(val fakeModel: FakeModel): BaseUseCase.RequestValues
+    class Requests(val fakeModel: FakeModel) : BaseUseCase.RequestValues
 }

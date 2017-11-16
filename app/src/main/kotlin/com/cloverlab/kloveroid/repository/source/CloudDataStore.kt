@@ -13,7 +13,7 @@ import javax.inject.Named
  * @author Jieyi Wu
  * @since 09/25/17
  */
-class CloudDataStore constructor(private val context: Context): IDataStore {
+class CloudDataStore constructor(private val context: Context) : IDataStore {
     @field:[Inject Named("FakeHttp")] lateinit var retrofit: Retrofit
 
     init {

@@ -5,7 +5,7 @@
 
 ![Kloveroid](https://github.com/dev-cloverlab/Kloveroid/blob/master/img/banner.png)
 
-This is an basic architecture of MVP and clean code for android. This project provides a complete
+This is an basic architecture of **MVP** and **clean architecture** for android. This project provides a complete
 components and the necessary MVP code in the beginning. To build an android app rapidly is this is
 project purpose.
 
@@ -30,7 +30,7 @@ There is an image for this project.
 
 # How to use
 
-1. You should fork this repo to yours
+1. You should _fork_ this repo to yours
 2. We use the two types of the activity and the fragment. The scenario isn't always that we have
 to implement with a **presenter**. When you need a **presenter**, you just inherit the normal
 **MvpActivity** or **MvpFragment**; otherwise you'd better use **BaseActivity** or **BaseFragment**
@@ -109,6 +109,4 @@ We're using some libraries for building a testable and module architecture.
 
 ### Utils
 
-We provide a tool kit for kotlin and this repo.
-
-You can find the detail from [KotlinKnifer](https://github.com/pokk/KotlinKnifer).
+We provide a tool kit for kotlin and this repo. You can find the detail from [KotlinKnifer](https://github.com/pokk/KotlinKnifer).
