@@ -3,7 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/dev-cloverlab/Kloveroid.svg?style=flat-square)](https://github.com/dev-cloverlab/Kloveroid)
 [![license](https://img.shields.io/github/license/dev-cloverlab/Kloveroid.svg?style=flat-square)](https://github.com/dev-cloverlab/Kloveroid)
 
-![Kloveroid](https://github.com/dev-cloverlab/Kloveroid/blob/master/img/banner.jpg)
+![Kloveroid](https://github.com/dev-cloverlab/Kloveroid/blob/master/img/banner.png)
 
 This is an basic architecture of MVP and clean code for android. This project provides a complete
 components and the necessary MVP code in the beginning. To build an android app rapidly is this is
