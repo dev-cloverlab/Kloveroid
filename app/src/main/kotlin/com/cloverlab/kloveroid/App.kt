@@ -1,6 +1,7 @@
 package com.cloverlab.kloveroid
 
 import com.cloverlab.kloveroid.internal.di.components.AppComponent
+import com.cloverlab.kloveroid.internal.di.components.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 

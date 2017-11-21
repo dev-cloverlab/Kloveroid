@@ -38,7 +38,7 @@ kapt { generateStubs = true }
 
 dependencies {
     // Library is including Gson, RxKotlin, RxJava.
-    implementation 'com.devrapid.jieyi:kotlinknifer:1.0.16'
+    implementation 'com.devrapid.jieyi:kotlinknifer:1.0.18'
     /* For language */
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"

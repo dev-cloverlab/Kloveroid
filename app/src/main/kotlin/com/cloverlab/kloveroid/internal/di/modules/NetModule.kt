@@ -3,7 +3,7 @@ package com.cloverlab.kloveroid.internal.di.modules
 import android.content.Context
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.Network
 import com.cloverlab.kloveroid.repository.api.RestfulApiFactory
-import com.cloverlab.kloveroid.repository.api.config.IApiConfig
+import com.cloverlab.kloveroid.repository.api.service.FakeService
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -25,15 +25,15 @@ import javax.inject.Named
 class NetModule {
     @Provides
     @Network
-    fun provideConverterGson(gson: Gson): GsonConverterFactory = GsonConverterFactory.create(gson)
+    fun provideConverterGson(gson: Gson) = GsonConverterFactory.create(gson)
 
     @Provides
     @Network
-    fun provideRxJavaCallAdapter(): RxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create()
+    fun provideRxJavaCallAdapter() = RxJava2CallAdapterFactory.create()
 
     @Provides
     @Network
-    fun provideGson(): Gson = with(GsonBuilder()) {
+    fun provideGson() = with(GsonBuilder()) {
         setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
         setLenient()
         create()
@@ -41,11 +41,11 @@ class NetModule {
 
     @Provides
     @Network
-    fun provideOkHttpCache(context: Context): Cache = Cache(context.cacheDir, 10 * 1024 * 1024 /* 10 MiB */)
+    fun provideOkHttpCache(context: Context) = Cache(context.cacheDir, 10 * 1024 * 1024 /* 10 MiB */)
 
     @Provides
     @Network
-    fun provideOkHttpClient(cache: Cache): OkHttpClient = OkHttpClient.Builder().cache(cache).build()
+    fun provideOkHttpClient(cache: Cache) = OkHttpClient.Builder().cache(cache).build()
 
     @Provides
     @Network
@@ -61,10 +61,9 @@ class NetModule {
     @Provides
     @Network
     @Named("FakeHttp")
-    fun provideRetrofit2(baseBuilder: Retrofit.Builder, restfulApiFactory: RestfulApiFactory): Retrofit =
+    fun provideRetrofit2(baseBuilder: Retrofit.Builder, restfulApiFactory: RestfulApiFactory) =
         with(baseBuilder) {
-            val config: IApiConfig = restfulApiFactory.createFakeConfig()
-            baseUrl(config.apiBaseUrl)
+            baseUrl(restfulApiFactory.createFakeConfig().apiBaseUrl)
             build()
-        }
+        }.create(FakeService::class.java)
 }

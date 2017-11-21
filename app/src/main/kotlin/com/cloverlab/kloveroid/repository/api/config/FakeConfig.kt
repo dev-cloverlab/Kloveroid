@@ -5,9 +5,11 @@ package com.cloverlab.kloveroid.repository.api.config
  * @since 09/25/17
  */
 class FakeConfig : IApiConfig {
-    override val apiBaseUrl: String = BASE_URL
-
     companion object {
-        private val BASE_URL = "http://xxx.xxx.xx"
+        const val API_REQUEST = "xxx/xx/xxx"
+        // All basic http api url of domain url.
+        private val BASE_URL = "http://xxx.xxx.xx/"
     }
+
+    override val apiBaseUrl: String = BASE_URL
 }

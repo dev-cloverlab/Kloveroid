@@ -24,13 +24,10 @@ class MainFragment : MvpFragment<MainContract.View, MainContract.Presenter>(), M
          *
          * @return A new instance of fragment BlankFragment.
          */
-        fun newInstance(arg1: String): MainFragment {
-            val fragment = MainFragment()
-            val bundle = Bundle()
-            bundle.putString(ARG_PARAM_, arg1)
-            fragment.arguments = bundle
-
-            return fragment
+        fun newInstance(arg1: String) = MainFragment().apply {
+            arguments = Bundle().apply {
+                putString(ARG_PARAM_, arg1)
+            }
         }
     }
 
