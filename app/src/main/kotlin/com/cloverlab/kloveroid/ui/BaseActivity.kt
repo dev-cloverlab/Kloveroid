@@ -32,6 +32,7 @@ abstract class BaseActivity : RxAppCompatActivity(),
     /** For providing to searchFragments. */
     @Inject lateinit var fragmentInjector: DispatchingAndroidInjector<android.app.Fragment>
     @Inject lateinit var navigator: Navigator
+    protected var mvpOnCreate: (() -> Unit)? = null
 
     // Register it in the parent class that it will be not reflected.
     protected var busEvent = object {
@@ -46,6 +47,7 @@ abstract class BaseActivity : RxAppCompatActivity(),
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(provideLayoutId())
+        mvpOnCreate?.invoke()
 
         // Register RxBus.
         RxBus.get().register(busEvent)

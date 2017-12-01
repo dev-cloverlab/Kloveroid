@@ -14,15 +14,17 @@ abstract class MvpActivity<V : IView, P : BasePresenter<V>> : BaseActivity() {
     abstract var presenter: P
 
     //region Activity lifecycle
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        presenter.view = provideCurrentActivityView()
+    override fun onContentChanged() {
+        super.onContentChanged()
         presenter.create(this)
     }
 
-    override fun onContentChanged() {
-        super.onContentChanged()
-        presenter.init()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        mvpOnCreate = {
+            presenter.view = provideCurrentActivityView()
+            presenter.init()
+        }
+        super.onCreate(savedInstanceState)
     }
 
     override fun onStart() {
