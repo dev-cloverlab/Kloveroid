@@ -5,7 +5,6 @@ import com.cloverlab.kloveroid.mvp.models.FakeModel
 import com.cloverlab.kloveroid.usecases.CreateFakeUseCase
 import com.cloverlab.kloveroid.utilies.extension.execute
 import com.devrapid.kotlinknifer.logw
-import com.devrapid.kotlinknifer.observer
 
 /**
  *
@@ -16,7 +15,7 @@ class MainPresenter(private val fakeCase: CreateFakeUseCase) : MainContract.Pres
     //region View implementation
     override fun init() {
         val request = CreateFakeUseCase.Requests(FakeModel("Jieyi", 19, "H"))
-        fakeCase.execute(request, lifecycleProvider, observer { logw(it) })
+        fakeCase.execute(request, lifecycleProvider) { onNext { logw(it) } }
         lifecycleProvider.execute(fakeCase, request) { onNext { logw(it) } }
         view.hideLoading()
     }

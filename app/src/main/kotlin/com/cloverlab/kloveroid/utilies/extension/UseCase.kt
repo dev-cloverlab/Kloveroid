@@ -3,6 +3,7 @@ package com.cloverlab.kloveroid.utilies.extension
 import com.cloverlab.kloveroid.usecases.BaseUseCase
 import com.devrapid.kotlinknifer.ObserverPlugin
 import com.trello.rxlifecycle2.LifecycleProvider
+import io.reactivex.Observable
 
 /**
  * @author  jieyi
@@ -10,9 +11,11 @@ import com.trello.rxlifecycle2.LifecycleProvider
  */
 fun <T, V : BaseUseCase.RequestValues, E> LifecycleProvider<E>.execute(usecase: BaseUseCase<T, V>,
                                                                        parameter: V,
+                                                                       block: (Observable<T>.() -> Observable<T>)? = null,
                                                                        observer: ObserverPlugin<T>.() -> Unit) =
-    usecase.execute(parameter, this, observer)
+    usecase.execute(parameter, this, block, observer)
 
 fun <T, V : BaseUseCase.RequestValues, E> LifecycleProvider<E>.execute(usecase: BaseUseCase<T, V>,
+                                                                       block: (Observable<T>.() -> Observable<T>)? = null,
                                                                        observer: ObserverPlugin<T>.() -> Unit) =
-    usecase.execute(this, observer)
+    usecase.execute(this, block, observer)

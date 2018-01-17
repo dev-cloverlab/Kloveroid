@@ -36,64 +36,57 @@ abstract class BaseUseCase<T, R : BaseUseCase.RequestValues>(threadExecutor: Thr
     /**
      * Executes the current use case.
      *
+     * @param lifecycleProvider the life cycle provider for cutting RxJava runs.
+     * @param block add some chain actions between [subscribeOn] and [observeOn].
      * @param observer a reaction of [Observer] from viewmodel, the data are omitted from database or remote.
      */
-    fun execute(lifecycleProvider: LifecycleProvider<*>? = null, observer: Observer<T>) = lifecycleProvider?.let {
-        buildUseCaseObservable().bindToLifecycle(it).subscribe(observer)
-    } ?: buildUseCaseObservable().subscribe(observer)
+    fun execute(lifecycleProvider: LifecycleProvider<*>? = null,
+                block: (Observable<T>.() -> Observable<T>)? = null,
+                observer: Observer<T>) =
+        buildUseCaseObservable(block).apply { lifecycleProvider?.let { bindToLifecycle(it) } }.subscribe(observer)
 
     /**
      * Executes the current use case with request parameters.
      *
      * @param parameter the parameter for retrieving data.
+     * @param lifecycleProvider the life cycle provider for cutting RxJava runs.
+     * @param block add some chain actions between [subscribeOn] and [observeOn].
      * @param observer a reaction of [Observer] from viewmodel, the data are omitted from database or remote.
      */
-    fun execute(parameter: R, lifecycleProvider: LifecycleProvider<*>? = null, observer: Observer<T>) {
+    fun execute(parameter: R,
+                lifecycleProvider: LifecycleProvider<*>? = null,
+                block: (Observable<T>.() -> Observable<T>)? = null,
+                observer: Observer<T>) {
         requestValues = parameter
-        execute(lifecycleProvider, observer)
+        execute(lifecycleProvider, block, observer)
     }
 
     /**
-     * Executes the current use case.
+     * Executes the current use case with an anonymous function.
      *
-     * @param lifecycleProvider LifecycleProvider<*>?=null :
+     * @param lifecycleProvider an activity or a fragment of the [LifecycleProvider] object.
+     * @param block add some chain actions between [subscribeOn] and [observeOn].
+     * @param observer a reaction of [ObserverPlugin] from viewmodel, the data are omitted from database or remote.
      */
-    fun execute(lifecycleProvider: LifecycleProvider<*>? = null) = lifecycleProvider?.let {
-        buildUseCaseObservable().bindToLifecycle(it)
-    } ?: buildUseCaseObservable()
+    fun execute(lifecycleProvider: LifecycleProvider<*>? = null,
+                block: (Observable<T>.() -> Observable<T>)? = null,
+                observer: ObserverPlugin<T>.() -> Unit) =
+        execute(lifecycleProvider, block, ObserverPlugin<T>().apply(observer))
 
     /**
-     * Executes the current use case with request parameters.
+     * Executes the current use case with request parameters with an anonymous function..
      *
      * @param parameter the parameter for retrieving data.
      * @param lifecycleProvider an activity or a fragment of the [LifecycleProvider] object.
-     */
-    fun execute(parameter: R, lifecycleProvider: LifecycleProvider<*>? = null): Observable<T> {
-        requestValues = parameter
-        return execute(lifecycleProvider)
-    }
-
-    /**
-     * Executes the current use case.
-     *
-     * @param lifecycleProvider an activity or a fragment of the [LifecycleProvider] object.
+     * @param block add some chain actions between [subscribeOn] and [observeOn].
      * @param observer a reaction of [ObserverPlugin] from viewmodel, the data are omitted from database or remote.
      */
-    fun execute(lifecycleProvider: LifecycleProvider<*>? = null, observer: ObserverPlugin<T>.() -> Unit) =
-        lifecycleProvider?.let {
-            buildUseCaseObservable().bindToLifecycle(it).subscribe(ObserverPlugin<T>().apply(observer))
-        } ?: buildUseCaseObservable().subscribe(ObserverPlugin<T>().apply(observer))
-
-    /**
-     * Executes the current use case with request parameters.
-     *
-     * @param parameter the parameter for retrieving data.
-     * @param lifecycleProvider an activity or a fragment of the [LifecycleProvider] object.
-     * @param observer a reaction of [ObserverPlugin] from viewmodel, the data are omitted from database or remote.
-     */
-    fun execute(parameter: R, lifecycleProvider: LifecycleProvider<*>? = null, observer: ObserverPlugin<T>.() -> Unit) {
+    fun execute(parameter: R,
+                lifecycleProvider: LifecycleProvider<*>? = null,
+                block: (Observable<T>.() -> Observable<T>)? = null,
+                observer: ObserverPlugin<T>.() -> Unit) {
         requestValues = parameter
-        execute(lifecycleProvider, observer)
+        execute(lifecycleProvider, block, observer)
     }
 
     /**
@@ -122,8 +115,9 @@ abstract class BaseUseCase<T, R : BaseUseCase.RequestValues>(threadExecutor: Thr
      *
      * @return [Observable] for connecting with a [Observer] from the kotlin layer.
      */
-    private fun buildUseCaseObservable(): Observable<T> = fetchUsecase().
+    private fun buildUseCaseObservable(block: (Observable<T>.() -> Observable<T>)? = null) = fetchUsecase().
         subscribeOn(subscribeScheduler).
+        apply { block?.invoke(this) }.
         observeOn(observeScheduler)
 
     /** Interface for wrap a data for passing to a request.*/
