@@ -1,4 +1,4 @@
-package com.cloverlab.kloveroid.ui
+package com.cloverlab.kloveroid.utilies
 
 import android.content.Context
 import javax.inject.Inject

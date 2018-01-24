@@ -1,4 +1,4 @@
-package com.cloverlab.kloveroid.ui
+package com.cloverlab.kloveroid.feature.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

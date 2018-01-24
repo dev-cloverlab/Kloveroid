@@ -1,6 +1,6 @@
 package com.cloverlab.kloveroid.usecases
 
-import com.cloverlab.kloveroid.repository.entities.FakeEntity
+import com.cloverlab.kloveroid.entities.FakeEntity
 import com.cloverlab.kloveroid.repository.repositories.IDataStore
 import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
 import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor

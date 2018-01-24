@@ -1,9 +1,10 @@
-package com.cloverlab.kloveroid.ui
+package com.cloverlab.kloveroid.feature.base
 
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.view.View
+import com.cloverlab.kloveroid.utilies.Navigator
 import com.cloverlab.kloveroid.utilies.constant.RxbusTag
 import com.devrapid.kotlinknifer.logw
 import com.hwangjr.rxbus.RxBus

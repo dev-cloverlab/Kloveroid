@@ -1,7 +1,7 @@
 package com.cloverlab.kloveroid.feature.main
 
+import com.cloverlab.kloveroid.entities.FakeEntity
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
-import com.cloverlab.kloveroid.repository.entities.FakeEntity
 import com.cloverlab.kloveroid.usecases.CreateFakeUseCase
 import com.cloverlab.kloveroid.utilies.usecase.execute
 import com.devrapid.kotlinknifer.logw

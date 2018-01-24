@@ -1,10 +1,10 @@
-package com.cloverlab.kloveroid.ui.fragments.main
+package com.cloverlab.kloveroid.feature.main
 
 import android.os.Bundle
 import com.cloverlab.kloveroid.R
+import com.cloverlab.kloveroid.feature.base.MvpFragment
 import com.cloverlab.kloveroid.mvp.contracts.MainContract.Presenter
 import com.cloverlab.kloveroid.mvp.contracts.MainContract.View
-import com.cloverlab.kloveroid.ui.MvpFragment
 import com.hwangjr.rxbus.RxBus
 import dagger.internal.Preconditions
 import kotlinx.android.synthetic.main.fragment_main.btn_test
@@ -35,10 +35,6 @@ class MainFragment : MvpFragment<View, Presenter>(), View {
     // The fragment initialization parameters.
     private val arg1 by lazy { arguments?.getString(ARG_PARAM_).orEmpty() }
 
-    //region Fragment lifecycle
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     //endregion
 
     //region Base fragment

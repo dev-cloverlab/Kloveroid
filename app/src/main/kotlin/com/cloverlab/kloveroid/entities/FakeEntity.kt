@@ -1,4 +1,4 @@
-package com.cloverlab.kloveroid.repository.entities
+package com.cloverlab.kloveroid.entities
 
 /**
  *

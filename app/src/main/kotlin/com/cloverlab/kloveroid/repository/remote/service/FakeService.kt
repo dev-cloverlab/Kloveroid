@@ -1,7 +1,7 @@
 package com.cloverlab.kloveroid.repository.remote.service
 
+import com.cloverlab.kloveroid.entities.FakeEntity
 import com.cloverlab.kloveroid.repository.remote.config.FakeConfig
-import com.cloverlab.kloveroid.repository.entities.FakeEntity
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.QueryMap

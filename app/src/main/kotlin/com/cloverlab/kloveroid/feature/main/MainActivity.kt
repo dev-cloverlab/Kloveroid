@@ -3,8 +3,7 @@ package com.cloverlab.kloveroid.feature.main
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.cloverlab.kloveroid.R
-import com.cloverlab.kloveroid.ui.BaseActivity
-import com.cloverlab.kloveroid.ui.fragments.main.MainFragment
+import com.cloverlab.kloveroid.feature.base.BaseActivity
 
 /**
  * @author  Jieyi Wu

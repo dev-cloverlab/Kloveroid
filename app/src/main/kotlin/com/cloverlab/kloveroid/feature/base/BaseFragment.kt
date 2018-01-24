@@ -1,4 +1,4 @@
-package com.cloverlab.kloveroid.ui
+package com.cloverlab.kloveroid.feature.base
 
 import android.app.Activity
 import android.content.Context

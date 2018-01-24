@@ -1,6 +1,6 @@
 package com.cloverlab.kloveroid.repository.repositories
 
-import com.cloverlab.kloveroid.repository.entities.FakeEntity
+import com.cloverlab.kloveroid.entities.FakeEntity
 import io.reactivex.Observable
 
 /**

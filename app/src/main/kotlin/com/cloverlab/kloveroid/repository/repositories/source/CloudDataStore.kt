@@ -1,9 +1,9 @@
 package com.cloverlab.kloveroid.repository.repositories.source
 
 import android.content.Context
+import com.cloverlab.kloveroid.entities.FakeEntity
 import com.cloverlab.kloveroid.internal.di.components.NetComponent
 import com.cloverlab.kloveroid.repository.remote.service.FakeService
-import com.cloverlab.kloveroid.repository.entities.FakeEntity
 import com.cloverlab.kloveroid.repository.repositories.IDataStore
 import dagger.internal.Preconditions
 import io.reactivex.Observable

@@ -1,8 +1,8 @@
 package com.cloverlab.kloveroid.repository.repositories
 
+import com.cloverlab.kloveroid.entities.FakeEntity
 import com.cloverlab.kloveroid.internal.di.annotations.qualifiers.Local
 import com.cloverlab.kloveroid.internal.di.annotations.qualifiers.Remote
-import com.cloverlab.kloveroid.repository.entities.FakeEntity
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
