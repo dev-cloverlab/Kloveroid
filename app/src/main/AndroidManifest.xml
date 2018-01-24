@@ -20,8 +20,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name="com.cloverlab.kloveroid.ui.activities.MainActivity">
+        android:theme="@style/AppTheme"
+        tools:replace="android:label">
+        <activity android:name="com.cloverlab.kloveroid.feature.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

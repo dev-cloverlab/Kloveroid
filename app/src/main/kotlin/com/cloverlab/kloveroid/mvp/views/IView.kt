@@ -3,8 +3,8 @@ package com.cloverlab.kloveroid.mvp.views
 /**
  * Interface representing a View that will use to load data.
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 interface IView {
     /**

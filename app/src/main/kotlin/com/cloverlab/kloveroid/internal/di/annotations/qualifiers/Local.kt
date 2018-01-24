@@ -5,8 +5,8 @@ import javax.inject.Qualifier
 /**
  * A qualifier for providing the [].
  *
- * @author  jieyi
- * @since   8/9/17
+ * @author  Jieyi Wu
+ * @since   2017/08/09
  */
 @Qualifier
 @Retention

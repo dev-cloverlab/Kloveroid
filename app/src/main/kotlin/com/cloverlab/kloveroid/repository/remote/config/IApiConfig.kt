@@ -1,10 +1,10 @@
-package com.cloverlab.kloveroid.repository.api.config
+package com.cloverlab.kloveroid.repository.remote.config
 
 /**
  * Interface of the setting of the difference http configurations.
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 interface IApiConfig {
     /**

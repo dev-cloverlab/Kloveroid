@@ -3,7 +3,7 @@ package com.cloverlab.kloveroid.internal.di.modules.dependency.fragment
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.PerFragment
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
 import com.cloverlab.kloveroid.repository.repositories.DataRepository
-import com.cloverlab.kloveroid.ui.fragments.main.MainPresenter
+import com.cloverlab.kloveroid.feature.main.MainPresenter
 import com.cloverlab.kloveroid.usecases.CreateFakeUseCase
 import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
 import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor
@@ -14,8 +14,8 @@ import dagger.Provides
  * A base component upon which fragment's components may depend.
  * Activity-level components should extend this component.
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 @Module
 class FragmentMainModule {

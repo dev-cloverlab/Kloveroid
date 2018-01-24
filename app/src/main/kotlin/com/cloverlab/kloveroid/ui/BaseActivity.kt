@@ -21,12 +21,12 @@ import javax.inject.Inject
 /**
  * Base activity for collecting all common methods here.
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 abstract class BaseActivity : RxAppCompatActivity(),
-    HasFragmentInjector,
-    HasSupportFragmentInjector {
+                              HasFragmentInjector,
+                              HasSupportFragmentInjector {
     /** For providing to support searchFragments. */
     @Inject lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
     /** For providing to searchFragments. */
@@ -36,7 +36,7 @@ abstract class BaseActivity : RxAppCompatActivity(),
 
     // Register it in the parent class that it will be not reflected.
     protected var busEvent = object {
-        @Subscribe(tags = arrayOf(Tag(RxbusTag.NAVIGATOR)))
+        @Subscribe(tags = [Tag(RxbusTag.NAVIGATOR)])
         fun test(test: String) {
             logw()
         }
@@ -87,7 +87,10 @@ abstract class BaseActivity : RxAppCompatActivity(),
      * @param containerViewId The container view to where add the fragment.
      * @param fragment The fragment to be added.
      */
-    fun addFragment(containerViewId: Int, fragment: Fragment, needBack: Boolean, sharedElement: View?,
+    fun addFragment(containerViewId: Int,
+                    fragment: Fragment,
+                    needBack: Boolean,
+                    sharedElement: View?,
                     shareElementName: String?) {
         Preconditions.checkNotNull(containerViewId)
         Preconditions.checkNotNull(fragment)

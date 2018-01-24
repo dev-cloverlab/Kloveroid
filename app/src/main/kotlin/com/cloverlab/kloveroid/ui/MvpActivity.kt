@@ -7,8 +7,8 @@ import com.cloverlab.kloveroid.mvp.views.IView
 /**
  * MVP activity for providing the advanced pre setting.
  *
- * @author Jieyi Wu
- * @since 09/28/17
+ * @author  Jieyi Wu
+ * @since   2017/09/28
  */
 abstract class MvpActivity<V : IView, P : BasePresenter<V>> : BaseActivity() {
     abstract var presenter: P

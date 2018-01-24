@@ -1,4 +1,4 @@
-package com.cloverlab.kloveroid.ui.activities
+package com.cloverlab.kloveroid.feature.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,8 +7,8 @@ import com.cloverlab.kloveroid.ui.BaseActivity
 import com.cloverlab.kloveroid.ui.fragments.main.MainFragment
 
 /**
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 class MainActivity : BaseActivity() {
     override fun init(savedInstanceState: Bundle?) {

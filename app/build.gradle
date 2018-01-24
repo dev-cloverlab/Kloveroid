@@ -4,12 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.1'
     defaultConfig {
         applicationId "com.cloverlab.kloveriod"
-        minSdkVersion 19
-        targetSdkVersion 26
+        minSdkVersion 21
+        targetSdkVersion 27
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
@@ -37,9 +37,10 @@ androidExtensions { experimental = true }
 kapt { generateStubs = true }
 
 dependencies {
-    // Library is including Gson, RxKotlin, RxJava.
-    implementation 'com.devrapid.jieyi:kotlinknifer:1.0.18'
-    /* For language */
+    // Library is including Gson, RxKotlin, RxJava, Glide.
+    implementation 'com.devrapid.jieyi:kotlinknifer:1.2.14'
+
+    //region Language
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
     // Kotlin Anko
@@ -47,10 +48,9 @@ dependencies {
     implementation "org.jetbrains.anko:anko-sdk25:${anko_version}"
     // sdk15, sdk19, sdk21, sdk23 are also available
     implementation "org.jetbrains.anko:anko-sdk25-coroutines:${anko_version}"
-    /* For reaction programming */
-    // Rx kotlin
-    implementation "io.reactivex.rxjava2:rxjava:${rx_java_version}"
-    implementation "io.reactivex.rxjava2:rxkotlin:${rx_kotlin_version}"
+    //endregion
+
+    //region Reaction Programming
     // Rx kotlin binding
     implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:${rx_binding_kotlin_version}"
     implementation "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:${rx_binding_kotlin_version}"
@@ -65,22 +65,24 @@ dependencies {
     // Rxlifecycle
     implementation "com.trello.rxlifecycle2:rxlifecycle-kotlin:${rx_lifecycle_version}"
     implementation "com.trello.rxlifecycle2:rxlifecycle-components:${rx_lifecycle_version}"
-    /* For architecture */
+    //endregion
+
+    //region Architecture
     // Dagger 2
     kapt "com.google.dagger:dagger-compiler:${dagger_2_version}"
     kapt "com.google.dagger:dagger-android-processor:${dagger_2_version}"
     implementation "com.google.dagger:dagger:${dagger_2_version}"
     implementation "com.google.dagger:dagger-android-support:${dagger_2_version}"
-    /* For internet */
+    //endregion
+
+    //region Internet
     // Retrofit 2
     implementation "com.squareup.retrofit2:retrofit:${retrofit_2_version}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit_2_version}"
     implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit_2_version}"
     // Glide
-    implementation "com.github.bumptech.glide:glide:${gilde_version}"
-    /* For json format */
-    // Gson
-    implementation "com.google.code.gson:gson:${gson_version}"
+//    implementation "com.github.bumptech.glide:glide:${gilde_version}"
+    //endregion
 
     implementation "com.android.support:appcompat-v7:26.0.2"
 }

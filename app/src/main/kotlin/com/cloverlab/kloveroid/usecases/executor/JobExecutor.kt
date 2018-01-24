@@ -9,7 +9,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Decorated [ThreadPoolExecutor]
+ * Decorated [ThreadPoolExecutor].
  */
 @Singleton
 class JobExecutor @Inject constructor() : ThreadExecutor {

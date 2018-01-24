@@ -5,8 +5,8 @@ import com.trello.rxlifecycle2.LifecycleProvider
 /**
  * Interface representing a Presenter in a model view presenter (MVP) pattern.
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 interface IPresenter {
     /**

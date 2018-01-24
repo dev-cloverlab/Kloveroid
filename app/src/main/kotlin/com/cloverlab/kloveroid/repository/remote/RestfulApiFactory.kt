@@ -1,15 +1,15 @@
-package com.cloverlab.kloveroid.repository.api
+package com.cloverlab.kloveroid.repository.remote
 
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.Network
-import com.cloverlab.kloveroid.repository.api.config.FakeConfig
-import com.cloverlab.kloveroid.repository.api.config.IApiConfig
+import com.cloverlab.kloveroid.repository.remote.config.FakeConfig
+import com.cloverlab.kloveroid.repository.remote.config.IApiConfig
 import javax.inject.Inject
 
 /**
  * Factory that creates different implementations of [IApiConfig].
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 @Network
 class RestfulApiFactory @Inject constructor() {

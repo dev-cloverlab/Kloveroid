@@ -2,8 +2,8 @@ package com.cloverlab.kloveroid.internal.di.modules
 
 import android.content.Context
 import com.cloverlab.kloveroid.internal.di.annotations.scopes.Network
-import com.cloverlab.kloveroid.repository.api.RestfulApiFactory
-import com.cloverlab.kloveroid.repository.api.service.FakeService
+import com.cloverlab.kloveroid.repository.remote.RestfulApiFactory
+import com.cloverlab.kloveroid.repository.remote.service.FakeService
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -18,8 +18,8 @@ import javax.inject.Named
 
 /**
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 @Module
 class NetModule {

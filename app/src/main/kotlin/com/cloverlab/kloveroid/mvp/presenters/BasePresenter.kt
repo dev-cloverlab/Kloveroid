@@ -4,8 +4,8 @@ import com.cloverlab.kloveroid.mvp.views.IView
 import com.trello.rxlifecycle2.LifecycleProvider
 
 /**
- * @author  jieyi
- * @since   9/28/17
+ * @author  Jieyi Wu
+ * @since   2017/09/28
  */
 abstract class BasePresenter<V : IView> : IPresenter {
     open lateinit var view: V

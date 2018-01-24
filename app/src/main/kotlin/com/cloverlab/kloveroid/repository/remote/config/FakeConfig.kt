@@ -1,8 +1,10 @@
-package com.cloverlab.kloveroid.repository.api.config
+package com.cloverlab.kloveroid.repository.remote.config
 
 /**
- * @author Jieyi Wu
- * @since 09/25/17
+ * The remote uri configuration.
+ *
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 class FakeConfig : IApiConfig {
     companion object {

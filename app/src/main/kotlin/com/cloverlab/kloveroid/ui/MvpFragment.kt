@@ -10,8 +10,8 @@ import com.cloverlab.kloveroid.mvp.views.IView
 /**
  * Base fragment for providing the advanced pre setting.
  *
- * @author Jieyi Wu
- * @since 09/28/17
+ * @author  Jieyi Wu
+ * @since   2017/09/28
  */
 abstract class MvpFragment<V : IView, P : BasePresenter<V>> : BaseFragment() {
     abstract var presenter: P

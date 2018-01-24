@@ -19,8 +19,8 @@ import javax.inject.Inject
 /**
  * Base fragment for collecting common methods here.
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 abstract class BaseFragment : RxFragment(), HasSupportFragmentInjector {
     /** From an activity for providing to children searchFragments. */
@@ -77,7 +77,7 @@ abstract class BaseFragment : RxFragment(), HasSupportFragmentInjector {
      *
      * @param savedInstanceState before status.
      */
-    abstract protected fun init(savedInstanceState: Bundle?)
+    protected abstract fun init(savedInstanceState: Bundle?)
 
     /**
      * Set the view for inflating.
@@ -85,5 +85,5 @@ abstract class BaseFragment : RxFragment(), HasSupportFragmentInjector {
      * @return [LayoutRes] layout xml.
      */
     @LayoutRes
-    abstract protected fun provideInflateView(): Int
+    protected abstract fun provideInflateView(): Int
 }

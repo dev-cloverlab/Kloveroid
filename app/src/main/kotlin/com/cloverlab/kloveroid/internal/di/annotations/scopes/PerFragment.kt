@@ -6,8 +6,8 @@ import javax.inject.Scope
  * A scoping annotation to permit objects whose lifetime should conform to the life of the fragment to be
  * memorized in the correct component.
  *
- * @author  jieyi
- * @since   6/8/17
+ * @author  Jieyi Wu
+ * @since   2017/06/08
  */
 @Scope
 @Retention

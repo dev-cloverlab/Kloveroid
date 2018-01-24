@@ -6,8 +6,8 @@ import io.reactivex.Observable
 /**
  * This specifies [].
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 interface IFragmentView {
     /**

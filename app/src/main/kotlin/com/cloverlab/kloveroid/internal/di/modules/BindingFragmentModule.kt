@@ -10,12 +10,12 @@ import dagger.android.ContributesAndroidInjector
  * A base component upon which [Fragment] components may depend. Fragment-level components should extend this component.
  * Lifecycle is shorter than [PerActivity].
  *
- * @author  jieyi
- * @since   9/28/17
+ * @author  Jieyi Wu
+ * @since   2017/09/28
  */
 @Module
 abstract class BindingFragmentModule {
     @PerFragment
-    @ContributesAndroidInjector(modules = arrayOf(FragmentMainModule::class))
+    @ContributesAndroidInjector(modules = [FragmentMainModule::class])
     abstract fun contributeMainFragmentInjector(): MainFragment
 }

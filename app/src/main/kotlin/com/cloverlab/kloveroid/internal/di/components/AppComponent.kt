@@ -15,14 +15,14 @@ import javax.inject.Singleton
 /**
  * A component whose lifetime is the life of the application.
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 @Singleton
-@Component(modules = arrayOf(AppModule::class,
+@Component(modules = [AppModule::class,
     RepositoryModule::class,
     BindingActivityModule::class,
-    AndroidSupportInjectionModule::class))
+    AndroidSupportInjectionModule::class])
 interface AppComponent : AndroidInjector<App> {
     /** [AndroidInjector] Builder for using on this whole app. */
     @Component.Builder

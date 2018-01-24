@@ -7,11 +7,11 @@ import com.cloverlab.kloveroid.mvp.views.IView
 /**
  * This specifies the contract between the [IPresenter] and the [IView].
  *
- * @author Jieyi Wu
- * @since 09/25/17
+ * @author  Jieyi Wu
+ * @since   2017/09/25
  */
 interface MainContract {
-    abstract class Presenter : BasePresenter<MainContract.View>()
+    abstract class Presenter : BasePresenter<View>()
 
     interface View : IView
 }
