@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.cloverlab.kloveriod"
         minSdkVersion 21
@@ -38,7 +38,7 @@ kapt { generateStubs = true }
 
 dependencies {
     // Library is including Gson, RxKotlin, RxJava, Glide.
-    implementation 'com.devrapid.jieyi:kotlinknifer:1.2.14'
+    implementation 'com.devrapid.jieyi:kotlinknifer:1.5.7'
 
     //region Language
     // Kotlin
@@ -84,7 +84,7 @@ dependencies {
 //    implementation "com.github.bumptech.glide:glide:${gilde_version}"
     //endregion
 
-    implementation "com.android.support:appcompat-v7:26.0.2"
+    implementation "com.android.support:appcompat-v7:27.1.1"
 }
 
 repositories {

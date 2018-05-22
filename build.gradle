@@ -2,13 +2,13 @@
 
 buildscript {
     ext {
-        kotlin_version = '1.2.20'
-        anko_version = '0.10.4'
-        rx_lifecycle_version = '2.1.0'
+        kotlin_version = '1.2.41'
+        anko_version = '0.10.5'
+        rx_lifecycle_version = '2.2.1'
         rx_bus_version = '2.0.0'
-        rx_binding_kotlin_version = '2.0.0'
+        rx_binding_kotlin_version = '2.1.1'
         retrofit_2_version = '2.3.0'
-        dagger_2_version = '2.11'
+        dagger_2_version = '2.16'
         gilde_version = '4.3.1'
     }
     repositories {
@@ -20,7 +20,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0-alpha09'
+        classpath 'com.android.tools.build:gradle:3.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
