@@ -4,12 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.trello.rxlifecycle2.components.support.RxFragment
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
+import com.trello.rxlifecycle3.components.support.RxFragment
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
@@ -24,8 +24,8 @@ import javax.inject.Inject
  */
 abstract class BaseFragment : RxFragment(), HasSupportFragmentInjector {
     /** From an activity for providing to children searchFragments. */
-    @Inject lateinit var childFragmentInjector: DispatchingAndroidInjector<Fragment>
-    protected val appContext: Context by lazy { activity.applicationContext }
+    @Inject lateinit var childFragmentInjector: DispatchingAndroidInjector<androidx.fragment.app.Fragment>
+    protected val appContext: Context by lazy { activity!!.applicationContext }
     protected var rootView: View? = null
 
     //region Fragment lifecycle
@@ -46,8 +46,10 @@ abstract class BaseFragment : RxFragment(), HasSupportFragmentInjector {
         super.onAttach(context)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Keep the instance data.
         retainInstance = true
         // FIXED: https://www.zybuluo.com/kimo/note/255244
@@ -58,7 +60,7 @@ abstract class BaseFragment : RxFragment(), HasSupportFragmentInjector {
         return rootView
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         init(savedInstanceState)
@@ -70,7 +72,7 @@ abstract class BaseFragment : RxFragment(), HasSupportFragmentInjector {
      *
      * @return a [supportFragmentInjector] for children of this fragment.
      */
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = childFragmentInjector
+    override fun supportFragmentInjector(): AndroidInjector<androidx.fragment.app.Fragment> = childFragmentInjector
 
     /**
      * Initialize method.

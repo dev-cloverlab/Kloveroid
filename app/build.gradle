@@ -4,16 +4,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.cloverlab.kloveriod"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 28
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     sourceSets {
         main {
@@ -31,18 +30,38 @@ android {
             debuggable true
         }
     }
+    compileOptions {
+        setSourceCompatibility(JavaVersion.VERSION_1_8)
+        setTargetCompatibility(JavaVersion.VERSION_1_8)
+    }
 }
 
 androidExtensions { experimental = true }
-kapt { generateStubs = true }
+kapt {
+    javacOptions {
+        option("-Adagger.fastInit=enabled")
+        option("-Adagger.formatGeneratedSource=disabled")
+        option("-Adagger.gradle.incremental=enabled")
+        option("-Adagger.floatingBindsMethods=enabled")
+        option("-Adagger.android.experimentalUseStringKeys=true")
+    }
+    correctErrorTypes = true
+    useBuildCache = true
+    mapDiagnosticLocations = true
+    generateStubs = true
+}
 
 dependencies {
+    implementation "androidx.multidex:multidex:2.0.0"
+
     // Library is including Gson, RxKotlin, RxJava, Glide.
-    implementation 'com.devrapid.jieyi:kotlinknifer:1.5.7'
+    implementation "com.devrapid.jieyi:kotlinknifer:2.1.0"
 
     //region Language
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0"
     // Kotlin Anko
     implementation "org.jetbrains.anko:anko-commons:${anko_version}"
     implementation "org.jetbrains.anko:anko-sdk25:${anko_version}"
@@ -63,8 +82,9 @@ dependencies {
         exclude group: "com.jakewharton.timber", module: "timber"
     })
     // Rxlifecycle
-    implementation "com.trello.rxlifecycle2:rxlifecycle-kotlin:${rx_lifecycle_version}"
-    implementation "com.trello.rxlifecycle2:rxlifecycle-components:${rx_lifecycle_version}"
+    implementation "com.trello.rxlifecycle3:rxlifecycle-kotlin:${rx_lifecycle_version}"
+    implementation "com.trello.rxlifecycle3:rxlifecycle-android-lifecycle-kotlin:${rx_lifecycle_version}"
+    implementation "com.trello.rxlifecycle3:rxlifecycle-components:${rx_lifecycle_version}"
     //endregion
 
     //region Architecture
@@ -72,6 +92,7 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:${dagger_2_version}"
     kapt "com.google.dagger:dagger-android-processor:${dagger_2_version}"
     implementation "com.google.dagger:dagger:${dagger_2_version}"
+    implementation "com.google.dagger:dagger-android:${dagger_2_version}"
     implementation "com.google.dagger:dagger-android-support:${dagger_2_version}"
     //endregion
 
@@ -84,19 +105,10 @@ dependencies {
 //    implementation "com.github.bumptech.glide:glide:${gilde_version}"
     //endregion
 
-    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "androidx.appcompat:appcompat:1.0.2"
 }
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://maven.google.com/'
-        name 'Google'
-    }
-}
-
-kotlin {
-    experimental {
-        coroutines "enable"
-    }
+    google()
 }

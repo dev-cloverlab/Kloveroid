@@ -3,7 +3,6 @@ package com.cloverlab.kloveroid.feature.main
 import com.cloverlab.kloveroid.entities.FakeEntity
 import com.cloverlab.kloveroid.mvp.contracts.MainContract
 import com.cloverlab.kloveroid.usecases.CreateFakeUseCase
-import com.cloverlab.kloveroid.utilies.usecase.execute
 import com.devrapid.kotlinknifer.logw
 
 /**
@@ -16,7 +15,7 @@ class MainPresenter(private val fakeCase: CreateFakeUseCase) : MainContract.Pres
     override fun init() {
         val request = CreateFakeUseCase.Requests(FakeEntity("Jieyi", 19, "H"))
         fakeCase.execute(request, lifecycleProvider) { onNext { logw(it) } }
-        lifecycleProvider.execute(fakeCase, request) { onNext { logw(it) } }
+//        lifecycleProvider.execute(fakeCase, request) { onNext { logw(it) } }
         view.hideLoading()
     }
     //endregion

@@ -5,11 +5,8 @@ import com.cloverlab.kloveroid.R
 import com.cloverlab.kloveroid.feature.base.MvpFragment
 import com.cloverlab.kloveroid.mvp.contracts.MainContract.Presenter
 import com.cloverlab.kloveroid.mvp.contracts.MainContract.View
-import com.hwangjr.rxbus.RxBus
 import dagger.internal.Preconditions
-import kotlinx.android.synthetic.main.fragment_main.btn_test
 import kotlinx.android.synthetic.main.fragment_main.tv_show
-import org.jetbrains.anko.bundleOf
 import javax.inject.Inject
 
 /**
@@ -27,7 +24,7 @@ class MainFragment : MvpFragment<View, Presenter>(), View {
          * @return A new instance of fragment BlankFragment.
          */
         fun newInstance(arg1: String) = MainFragment().apply {
-            arguments = bundleOf(Pair(ARG_PARAM_, arg1))
+            arguments = bundleOf(arrayOf<Pair<String, Any?>>(Pair(ARG_PARAM_, arg1)))
         }
     }
 
@@ -39,7 +36,7 @@ class MainFragment : MvpFragment<View, Presenter>(), View {
 
     //region Base fragment
     override fun init(savedInstanceState: Bundle?) {
-        btn_test.setOnClickListener { RxBus.get().post("test") }
+//        btn_test.setOnClickListener { RxBus.get().post("test") }
         tv_show.text = "Hello World!!"
     }
 

@@ -1,16 +1,11 @@
 package com.cloverlab.kloveroid.feature.base
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
 import android.view.View
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import com.cloverlab.kloveroid.utilies.Navigator
-import com.cloverlab.kloveroid.utilies.constant.RxbusTag
-import com.devrapid.kotlinknifer.logw
-import com.hwangjr.rxbus.RxBus
-import com.hwangjr.rxbus.annotation.Subscribe
-import com.hwangjr.rxbus.annotation.Tag
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -29,7 +24,7 @@ abstract class BaseActivity : RxAppCompatActivity(),
                               HasFragmentInjector,
                               HasSupportFragmentInjector {
     /** For providing to support searchFragments. */
-    @Inject lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
+    @Inject lateinit var supportFragmentInjector: DispatchingAndroidInjector<androidx.fragment.app.Fragment>
     /** For providing to searchFragments. */
     @Inject lateinit var fragmentInjector: DispatchingAndroidInjector<android.app.Fragment>
     @Inject lateinit var navigator: Navigator
@@ -37,10 +32,10 @@ abstract class BaseActivity : RxAppCompatActivity(),
 
     // Register it in the parent class that it will be not reflected.
     protected var busEvent = object {
-        @Subscribe(tags = [Tag(RxbusTag.NAVIGATOR)])
-        fun test(test: String) {
-            logw()
-        }
+//        @Subscribe(tags = [Tag(RxbusTag.NAVIGATOR)])
+//        fun test(test: String) {
+//            logw()
+//        }
     }
 
     //region Activity lifecycle
@@ -51,16 +46,10 @@ abstract class BaseActivity : RxAppCompatActivity(),
         mvpOnCreate?.invoke()
 
         // Register RxBus.
-        RxBus.get().register(busEvent)
+//        RxBus.get().register(busEvent)
         init(savedInstanceState)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        // Unregister RxBus.
-        RxBus.get().unregister(busEvent)
-    }
     //endregion
 
     abstract fun init(savedInstanceState: Bundle?)
@@ -73,7 +62,7 @@ abstract class BaseActivity : RxAppCompatActivity(),
      *
      * @return a [supportFragmentInjector] for children of this fragment.
      */
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = supportFragmentInjector
+    override fun supportFragmentInjector(): AndroidInjector<androidx.fragment.app.Fragment> = supportFragmentInjector
 
     /**
      * Providing the fragment injector([android.app.Fragment]) for the searchFragments.
@@ -88,11 +77,13 @@ abstract class BaseActivity : RxAppCompatActivity(),
      * @param containerViewId The container view to where add the fragment.
      * @param fragment The fragment to be added.
      */
-    fun addFragment(containerViewId: Int,
-                    fragment: Fragment,
-                    needBack: Boolean,
-                    sharedElement: View?,
-                    shareElementName: String?) {
+    fun addFragment(
+        containerViewId: Int,
+        fragment: androidx.fragment.app.Fragment,
+        needBack: Boolean,
+        sharedElement: View?,
+        shareElementName: String?
+    ) {
         Preconditions.checkNotNull(containerViewId)
         Preconditions.checkNotNull(fragment)
         Preconditions.checkNotNull(needBack)

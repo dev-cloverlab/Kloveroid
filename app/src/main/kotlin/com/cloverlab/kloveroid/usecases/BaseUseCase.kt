@@ -3,9 +3,9 @@ package com.cloverlab.kloveroid.usecases
 import com.cloverlab.kloveroid.usecases.BaseUseCase.RequestValues
 import com.cloverlab.kloveroid.usecases.executor.PostExecutionThread
 import com.cloverlab.kloveroid.usecases.executor.ThreadExecutor
-import com.devrapid.kotlinknifer.ObserverPlugin
-import com.trello.rxlifecycle2.LifecycleProvider
-import com.trello.rxlifecycle2.kotlin.bindToLifecycle
+import com.devrapid.kotlinshaver.ObserverPlugin
+import com.trello.rxlifecycle3.LifecycleProvider
+import com.trello.rxlifecycle3.kotlin.bindToLifecycle
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.Scheduler
@@ -26,8 +26,10 @@ import java.util.concurrent.ThreadPoolExecutor
  * @author  Jieyi Wu
  * @since   2017/09/25
  */
-abstract class BaseUseCase<T, R : BaseUseCase.RequestValues>(threadExecutor: ThreadExecutor,
-                                                             postExecutionThread: PostExecutionThread) {
+abstract class BaseUseCase<T, R : BaseUseCase.RequestValues>(
+    threadExecutor: ThreadExecutor,
+    postExecutionThread: PostExecutionThread
+) {
     /** Provide a common parameter variable for the children class. */
     var requestValues: R? = null
 
@@ -39,9 +41,11 @@ abstract class BaseUseCase<T, R : BaseUseCase.RequestValues>(threadExecutor: Thr
      * @param block add some chain actions between [subscribeOn] and [observeOn].
      * @param observer a reaction of [Observer] from viewmodel, the data are omitted from database or remote.
      */
-    fun <F> execute(lifecycleProvider: LifecycleProvider<*>? = null,
-                    block: Observable<T>.() -> Observable<F>,
-                    observer: Observer<F>) =
+    fun <F> execute(
+        lifecycleProvider: LifecycleProvider<*>? = null,
+        block: Observable<T>.() -> Observable<F>,
+        observer: Observer<F>
+    ) =
         buildUseCaseObservable(block).apply { lifecycleProvider?.let { bindToLifecycle(it) } }.subscribe(observer)
 
     /**
@@ -52,10 +56,12 @@ abstract class BaseUseCase<T, R : BaseUseCase.RequestValues>(threadExecutor: Thr
      * @param block add some chain actions between [subscribeOn] and [observeOn].
      * @param observer a reaction of [Observer] from viewmodel, the data are omitted from database or remote.
      */
-    fun <F> execute(parameter: R,
-                    lifecycleProvider: LifecycleProvider<*>? = null,
-                    block: Observable<T>.() -> Observable<F>,
-                    observer: Observer<F>) {
+    fun <F> execute(
+        parameter: R,
+        lifecycleProvider: LifecycleProvider<*>? = null,
+        block: Observable<T>.() -> Observable<F>,
+        observer: Observer<F>
+    ) {
         requestValues = parameter
         execute(lifecycleProvider, block, observer)
     }
@@ -67,9 +73,11 @@ abstract class BaseUseCase<T, R : BaseUseCase.RequestValues>(threadExecutor: Thr
      * @param block add some chain actions between [subscribeOn] and [observeOn].
      * @param observer a reaction of [ObserverPlugin] from viewmodel, the data are omitted from database or remote.
      */
-    fun <F> execute(lifecycleProvider: LifecycleProvider<*>? = null,
-                    block: Observable<T>.() -> Observable<F>,
-                    observer: ObserverPlugin<F>.() -> Unit) =
+    fun <F> execute(
+        lifecycleProvider: LifecycleProvider<*>? = null,
+        block: Observable<T>.() -> Observable<F>,
+        observer: ObserverPlugin<F>.() -> Unit
+    ) =
         execute(lifecycleProvider, block, ObserverPlugin<F>().apply(observer))
 
     /**
@@ -80,10 +88,12 @@ abstract class BaseUseCase<T, R : BaseUseCase.RequestValues>(threadExecutor: Thr
      * @param block add some chain actions between [subscribeOn] and [observeOn].
      * @param observer a reaction of [ObserverPlugin] from viewmodel, the data are omitted from database or remote.
      */
-    fun <F> execute(parameter: R,
-                    lifecycleProvider: LifecycleProvider<*>? = null,
-                    block: Observable<T>.() -> Observable<F>,
-                    observer: ObserverPlugin<F>.() -> Unit) {
+    fun <F> execute(
+        parameter: R,
+        lifecycleProvider: LifecycleProvider<*>? = null,
+        block: Observable<T>.() -> Observable<F>,
+        observer: ObserverPlugin<F>.() -> Unit
+    ) {
         requestValues = parameter
         execute(lifecycleProvider, block, observer)
     }

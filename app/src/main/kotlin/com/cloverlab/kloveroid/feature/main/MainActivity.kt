@@ -1,7 +1,6 @@
 package com.cloverlab.kloveroid.feature.main
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import com.cloverlab.kloveroid.R
 import com.cloverlab.kloveroid.feature.base.BaseActivity
 
@@ -19,7 +18,7 @@ class MainActivity : BaseActivity() {
 
     override fun provideLayoutId(): Int = R.layout.activity_main
 
-    fun getFragment(): Fragment {
+    fun getFragment(): androidx.fragment.app.Fragment {
         return when (-1) {
             R.layout.fragment_main -> {
                 val fragment = MainFragment.newInstance("")

@@ -1,6 +1,6 @@
 package com.cloverlab.kloveroid.mvp.presenters
 
-import com.trello.rxlifecycle2.LifecycleProvider
+import com.trello.rxlifecycle3.LifecycleProvider
 
 /**
  * Interface representing a Presenter in a model view presenter (MVP) pattern.

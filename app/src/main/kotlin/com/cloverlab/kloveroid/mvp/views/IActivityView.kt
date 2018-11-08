@@ -1,6 +1,6 @@
 package com.cloverlab.kloveroid.mvp.views
 
-import com.trello.rxlifecycle2.android.ActivityEvent
+import com.trello.rxlifecycle3.android.ActivityEvent
 import io.reactivex.Observable
 
 /**
