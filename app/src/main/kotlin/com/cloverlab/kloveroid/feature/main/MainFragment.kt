@@ -24,7 +24,7 @@ class MainFragment : MvpFragment<View, Presenter>(), View {
          * @return A new instance of fragment BlankFragment.
          */
         fun newInstance(arg1: String) = MainFragment().apply {
-            arguments = bundleOf(arrayOf<Pair<String, Any?>>(Pair(ARG_PARAM_, arg1)))
+            arguments = bundleOf(arrayOf<Pair<String, Any?>>(ARG_PARAM_ to arg1))
         }
     }
 
